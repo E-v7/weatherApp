@@ -9,11 +9,11 @@
 </head>
 <body>
     <form id="MainPageForm" runat="server">
-        <h1>The Weather App</h1>
+        <h1 id="title">The Weather App</h1>
         <div id="navigation_bar">
             <a href="#">Home</a>
             <a href="#">Hourly</a>
-            <a href="#">...</a>
+            <a href="#">OTHER</a>
         </div>
     </form>
 
