@@ -1,2 +1,25 @@
 ﻿body {
+    background-color: cornflowerblue;
+}
+
+#title {
+    color: darkkhaki;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#navigation_bar {
+    border: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#navigation_bar a {
+    color: darkkhaki;
+    text-decoration: none;
+}
+
+#navigation_bar a:hover {
+    color: red;
 }
