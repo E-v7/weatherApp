@@ -9,12 +9,15 @@
 </head>
 <body>
     <form id="MainPageForm" runat="server">
-        <h1 id="title">The Weather App</h1>
-        <div id="navigation_bar">
-            <a href="#">Home</a>
-            <a href="#">Hourly</a>
-            <a href="#">OTHER</a>
-        </div>
+        <header>
+            <h1 id="title">The Weather App</h1>
+            <div id="navigation_bar">
+                <a href="#">Home</a>
+                <a href="#">Hourly</a>
+                <a href="#">OTHER</a>
+            </div>
+        </header>
+        
     </form>
 
     <script type="text/javascript" src="scripts/script.js"></script>
