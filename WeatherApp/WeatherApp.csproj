@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hourlyWeather.aspx" />
+    <Content Include="images\clear-sky-day.png" />
+    <Content Include="images\mist-day.png" />
+    <Content Include="images\rain-day.png" />
     <Content Include="index.aspx" />
     <Content Include="scripts\script.js" />
     <Content Include="styles\style.css" />
