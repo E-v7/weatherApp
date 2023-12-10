@@ -67,12 +67,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="hourlyWeather.aspx" />
+    <Content Include="images\clear-sky-day.png" />
+    <Content Include="images\mist-day.png" />
+    <Content Include="images\rain-day.png" />
     <Content Include="index.aspx" />
     <Content Include="scripts\script.js" />
     <Content Include="styles\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="hourlyWeather.aspx.cs">
+      <DependentUpon>hourlyWeather.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hourlyWeather.aspx.designer.cs">
+      <DependentUpon>hourlyWeather.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
