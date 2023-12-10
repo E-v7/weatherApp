@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Web;
 using System.Web.Hosting;
+using System.Web.UI.WebControls;
 using WeatherApp.Properties;
 
 namespace WeatherApp {
@@ -46,18 +47,22 @@ namespace WeatherApp {
                 https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
              */
             string url = "https://api.openweathermap.org/data/2.5/weather?q=";
-            
             url += cityName;
-
-            if (stateCode != null) {
+            if (!string.IsNullOrEmpty(stateCode)) {
                 url += $",{stateCode}";
             }
-
-            if (countryCode != null) {
+            if (!string.IsNullOrEmpty(countryCode)) {
                 url += $",{countryCode}";
             }
-
             url += $"&ApplicationId={settings.APIKEY}";
+
+            // Send request
+            HttpResponseMessage responseMessage;
+            using (var client = new HttpClient()) {
+                var endPoint = new Uri(url);
+                responseMessage = client.GetAsync(endPoint).Result;
+            }
+            var jsonData = JArray.Parse(responseMessage.Content.ReadAsStringAsync().Result);
 
             return weather;
         }
