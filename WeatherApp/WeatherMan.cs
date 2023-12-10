@@ -38,9 +38,7 @@ namespace WeatherApp {
             return $"Lat: {lat}, Lon: {lon}";
         }
 
-        public static Dictionary<string, string> GetHourlyWeather(string cityName, string countryCode = null, string stateCode = null) {
-            Dictionary<string, string> weather = new Dictionary<string, string>();
-
+        public static JObject GetHourlyWeather(string cityName, string countryCode = null, string stateCode = null) {
             /*
                 https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
                 https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
@@ -54,7 +52,7 @@ namespace WeatherApp {
             if (!string.IsNullOrEmpty(countryCode)) {
                 url += $",{countryCode}";
             }
-            url += $"&ApplicationId={settings.APIKEY}";
+            url += $"&appid={settings.APIKEY}";
 
             // Send request
             HttpResponseMessage responseMessage;
@@ -62,9 +60,9 @@ namespace WeatherApp {
                 var endPoint = new Uri(url);
                 responseMessage = client.GetAsync(endPoint).Result;
             }
-            var jsonData = JArray.Parse(responseMessage.Content.ReadAsStringAsync().Result);
+            var jsonData = JObject.Parse(responseMessage.Content.ReadAsStringAsync().Result);
 
-            return weather;
+            return jsonData;
         }
     }
 }

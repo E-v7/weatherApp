@@ -140,5 +140,12 @@ header {
 
 /* Delete me later */
 .weather_card {
-    margin: 50px 0px 0px 50px;
+    margin: 300px 0px 0px 50px;
+}
+
+.weather_card_collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
