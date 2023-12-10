@@ -14,30 +14,26 @@ using WeatherApp.Properties;
 namespace WeatherApp {
     public static class WeatherMan {
         /*
+         * Some api calls require a limit to be provided to limit the amount of data sent back
          * Number of the locations in the API response (up to 5 results can be returned in the API response)
          */
         private static int limit = 1;
         private static Settings settings = new Settings();
 
-        // make me private later
-        public static string ConvertLocationToCoordinates(string cityName, string stateCode, string countryCode) {
-            // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-            string jsonData;
-            using (var client = new HttpClient()) {
-                var endpoint = new Uri($"http://api.openweathermap.org/geo/1.0/direct?q={cityName},{stateCode},{countryCode}&limit={limit}&appid={settings.APIKEY}");
-                var result = client.GetAsync(endpoint).Result;
-                jsonData = result.Content.ReadAsStringAsync().Result;
-            }
-
-            var parsedData = JArray.Parse(jsonData);
-
-            
-            var lat = parsedData[0]["lat"];
-            var lon = parsedData[0]["lon"];
-
-            return $"Lat: {lat}, Lon: {lon}";
-        }
-
+        /*
+         * Method       : GetHourlyWeather()
+         * 
+         * Description  : Takes the city name, country code (optionl), and state code (optional) then requests
+         *                  the weather data from the open weather api before converting the data into a JObject
+         *                  and returning the converted data.
+         * 
+         * Parameters   : string cityName       : The name of the city the user would like the weather info from
+         *                string countryCode    : The country the city is in (optional and just used to narrow down the location)
+         *                string stateCode      : The state the city is in (optional and just used to narrow down the location)
+         * 
+         * Returns      : JObject jsonData  : The converted data returned from the api
+         *                null              : if something went wrong
+         */
         public static JObject GetHourlyWeather(string cityName, string countryCode = null, string stateCode = null) {
             /*
                 https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -54,14 +50,19 @@ namespace WeatherApp {
             }
             url += $"&appid={settings.APIKEY}";
 
-            // Send request
-            HttpResponseMessage responseMessage;
-            using (var client = new HttpClient()) {
-                var endPoint = new Uri(url);
-                responseMessage = client.GetAsync(endPoint).Result;
+            JObject jsonData = null;
+            try {
+                // Send request
+                HttpResponseMessage responseMessage;
+                using (var client = new HttpClient()) {
+                    var endPoint = new Uri(url);
+                    responseMessage = client.GetAsync(endPoint).Result;
+                }
+                jsonData = JObject.Parse(responseMessage.Content.ReadAsStringAsync().Result);
+            } catch (Exception) {
+                return null;
             }
-            var jsonData = JObject.Parse(responseMessage.Content.ReadAsStringAsync().Result);
-
+            
             return jsonData;
         }
     }

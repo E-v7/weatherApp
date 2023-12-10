@@ -18,16 +18,6 @@ namespace WeatherApp.Tests {
         }
 
         [TestMethod()]
-        public void ConvertLocationToCoordinatesTest() {
-            var data = WeatherMan.ConvertLocationToCoordinates("Waterloo", "ON", "CA");
-
-            // Write data to file so it can be observed
-            WriteToLog("ConvertLocationToCoordinatesTest", data);
-
-            Assert.IsNotNull(data);
-        }
-
-        [TestMethod()]
         public void GetHourlyWeatherTestWithAllParameters() {
             var data = WeatherMan.GetHourlyWeather("Waterloo", "CA", "ON");
 
