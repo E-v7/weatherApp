@@ -72,7 +72,7 @@ namespace WeatherApp
                         if (time > currentTime && (time - currentTime).TotalHours <= 24)
                         {
                             cardsHtml.Append("<div class='weather_card'>");
-                            cardsHtml.Append($"<h2 class='weather_card_location'>{city}</h2>");
+                            cardsHtml.Append($"<h2 class='weather_card_location'>{forecastItem.name}</h2>");
                             cardsHtml.Append($"<p class='weather_card_description'>{time}, {description}</p>");
                             cardsHtml.Append("<div class='weather_card_temperature'>");
                             cardsHtml.Append($"<h1>{temperature}°C</h1>");
@@ -81,11 +81,11 @@ namespace WeatherApp
                             cardsHtml.Append("<div class=\"weather_card_extras\">");
                             cardsHtml.Append("<div class=\"weather_card_precipitation\">");
                             cardsHtml.Append("<img src=\"images/rain-day.png\" />");
-                            cardsHtml.Append($"<p>{percipitation}</p>");
+                            cardsHtml.Append($"<p>{percipitation}%</p>");
                             cardsHtml.Append("</div");
                             cardsHtml.Append("<div class='weather_card_wind'>");
                             cardsHtml.Append("<img src=\"images/mist-day.png\" />");
-                            cardsHtml.Append($"<p>{windSpeed}</p>");
+                            cardsHtml.Append($"<p>{windSpeed} m/s</p>");
                             cardsHtml.Append("</div>");
                             cardsHtml.Append("</div>");
                             cardsHtml.Append("</div>");
