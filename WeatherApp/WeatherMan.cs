@@ -30,10 +30,36 @@ namespace WeatherApp {
 
             var parsedData = JArray.Parse(jsonData);
 
+            
             var lat = parsedData[0]["lat"];
             var lon = parsedData[0]["lon"];
 
             return $"Lat: {lat}, Lon: {lon}";
+        }
+
+        public static Dictionary<string, string> GetHourlyWeather(string cityName, string countryCode = null, string stateCode = null) {
+            Dictionary<string, string> weather = new Dictionary<string, string>();
+
+            /*
+                https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+                https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
+                https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
+             */
+            string url = "https://api.openweathermap.org/data/2.5/weather?q=";
+            
+            url += cityName;
+
+            if (stateCode != null) {
+                url += $",{stateCode}";
+            }
+
+            if (countryCode != null) {
+                url += $",{countryCode}";
+            }
+
+            url += $"&ApplicationId={settings.APIKEY}";
+
+            return weather;
         }
     }
 }
