@@ -19,7 +19,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithAllParameters() {
-            var data = WeatherMan.GetHourlyWeather("Waterloo", "CA", "ON");
+            var data = WeatherWizard.GetHourlyWeather("Waterloo", "CA", "ON");
 
             WriteToLog("GetHourlyWeatherTestWithAllParameters", data.ToString());
 
@@ -28,7 +28,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithTwoParameters() {
-            var data = WeatherMan.GetHourlyWeather("Waterloo", "CA");
+            var data = WeatherWizard.GetHourlyWeather("Waterloo", "CA");
 
             WriteToLog("GetHourlyWeatherTestWithTwoParameters", data.ToString());
 
@@ -37,7 +37,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithOneParameters() {
-            var data = WeatherMan.GetHourlyWeather("Waterloo");
+            var data = WeatherWizard.GetHourlyWeather("Waterloo");
 
             WriteToLog("GetHourlyWeatherTestWithOneParameters", data.ToString());
 

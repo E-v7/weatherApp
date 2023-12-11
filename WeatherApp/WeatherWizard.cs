@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 using WeatherApp.Properties;
 
 namespace WeatherApp {
-    public static class WeatherMan {
+    public static class WeatherWizard {
         /*
          * Some api calls require a limit to be provided to limit the amount of data sent back
          * Number of the locations in the API response (up to 5 results can be returned in the API response)
