@@ -19,7 +19,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithAllParameters() {
-            var data = WeatherWizard.GetHourlyWeather("Waterloo", "CA", "ON");
+            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo", "CA", "ON");
 
             WriteToLog("GetHourlyWeatherTestWithAllParameters", data.ToString());
 
@@ -28,7 +28,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithTwoParameters() {
-            var data = WeatherWizard.GetHourlyWeather("Waterloo", "CA");
+            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo", "CA");
 
             WriteToLog("GetHourlyWeatherTestWithTwoParameters", data.ToString());
 
@@ -37,9 +37,16 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithOneParameters() {
-            var data = WeatherWizard.GetHourlyWeather("Waterloo");
+            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo");
 
             WriteToLog("GetHourlyWeatherTestWithOneParameters", data.ToString());
+
+            Assert.IsNotNull(data);
+        }
+
+        [TestMethod()]
+        public void GetHourlyWeatherToWeatherTest() {
+            var data = WeatherWizard.GetHourlyWeatherToWeatherObject("Waterloo");
 
             Assert.IsNotNull(data);
         }

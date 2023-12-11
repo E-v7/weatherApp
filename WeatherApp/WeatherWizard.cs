@@ -34,7 +34,7 @@ namespace WeatherApp {
          * Returns      : JObject jsonData  : The converted data returned from the api
          *                null              : if something went wrong
          */
-        public static JObject GetHourlyWeather(string cityName, string countryCode = null, string stateCode = null) {
+        public static JObject GetHourlyWeatherToJBject(string cityName, string countryCode = null, string stateCode = null) {
             /*
                 https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
                 https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
@@ -64,6 +64,16 @@ namespace WeatherApp {
             }
             
             return jsonData;
+        }
+
+        public static Weather GetHourlyWeatherToWeatherObject(string cityName, string countryCode = null, string stateCode = null) {
+            Weather weather = null;
+
+            var jsonData = GetHourlyWeatherToJBject(cityName, countryCode, stateCode);
+
+            weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
+
+            return weather;
         }
     }
 }
