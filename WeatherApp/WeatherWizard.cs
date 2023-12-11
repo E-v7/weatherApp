@@ -66,6 +66,15 @@ namespace WeatherApp {
             return jsonData;
         }
 
+        /*
+         * Method       : GetHourlyWeatherToWeatherObject()
+         * 
+         * Description  : 
+         * 
+         * Parameters   :
+         * 
+         * Returns      :
+         */
         public static Weather GetHourlyWeatherToWeatherObject(string cityName, string countryCode = null, string stateCode = null) {
             Weather weather = null;
 

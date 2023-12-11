@@ -5,6 +5,15 @@ using System.Linq;
 using System.Web;
 
 namespace WeatherApp {
+    /*
+     * Class        : Weather
+     * Description  : This class was created to be used along with the JsonConvert.DeserializeObject<T>(string) function
+     *                  and when called will set all properties of this class object to the data it extracts from the
+     *                  json data. It was created to make the code more readable and so the API can be called less often.
+     *                  
+     *                  Also this should work with the 5 day weather data as well but if it does not it can be easily modified
+     *                  to do so!
+     */
     public class Weather {
         public _Coord coord { get; set; }
         public _Weather[] weather { get; set; }
