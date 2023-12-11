@@ -15,10 +15,14 @@
                 <a href="index.aspx">Home</a>
                 <a href="hourlyWeather.aspx">Hourly</a>
                 <a href="#">OTHER</a>
+                <div class="searchbox">
+                    <input class="textbox" id="city" name="city" type="text"/>
+                    <asp:Button ID="getWeatherButton" runat="server" Text="Go" OnClick="GetWeather" />
+                </div>
             </div>
         </header>
         
-        <div id="weather_card_collection">
+      <%--   <div id="weather_card_collection">
             <div class="weather_card">
                 <h2 class="weather_card_location">Waterloo</h2>
                 <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
@@ -133,7 +137,9 @@
                 </div>
             </div>
         </div>--%>
-
+        <div>
+            <asp:Literal ID="WeatherOutput" runat="server"></asp:Literal>
+        </div>
     </form>
 
     <script type="text/javascript" src="scripts/script.js"></script>
