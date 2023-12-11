@@ -9,7 +9,7 @@ using System.IO;
 
 namespace WeatherApp.Tests {
     [TestClass()]
-    public class WeatherManTests {
+    public class WeatherWizardTests {
         static string logFile = "test_outputs/logs.txt";
         public void WriteToLog(string funcName, string data) {
             using (StreamWriter sw = new StreamWriter(logFile, true)) {
