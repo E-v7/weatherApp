@@ -12,18 +12,17 @@ html, body {
 }
 
 body {
-    background-color: var(--colour_3);
+    background-color: mediumaquamarine;
 }
 
 header {
-    background-color: var(--colour_4);
+    background-color: cadetblue;
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
     border-bottom: 3px solid var(--colour_2);
-
-    color: var(--colour_1);
+    color: brown;
 }
 
 #title {
@@ -36,25 +35,24 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
     font-size: larger;
     margin-bottom: 2px;
 }
 
-#navigation_bar a {
-    color: var(--colour_2);
-    background-image: linear-gradient(90deg, palevioletred, var(--colour_3));
-    background-size: 0% 1.5px;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    text-decoration: none;
-    transition: background-size 0.1s ease-in-out, color 0.1s ease-in-out;
-}
+    #navigation_bar a {
+        color: firebrick;
+        background-image: linear-gradient(90deg, palevioletred, var(--colour_3));
+        background-size: 0% 1.5px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        text-decoration: none;
+        transition: background-size 0.1s ease-in-out, color 0.1s ease-in-out;
+    }
 
-#navigation_bar a:hover {
-    background-size: 100% 1.5px;
-    color: palevioletred;
-}
+        #navigation_bar a:hover {
+            background-size: 100% 1.5px;
+            color: palevioletred;
+        }
 
 .weather_card * {
     margin: 0;
@@ -71,17 +69,16 @@ header {
     flex-direction: column;
     padding: 25px 10px 25px 10px;
     background-color: whitesmoke;
-
     transition: box-shadow 0.5s ease-in-out;
 }
 
-.weather_card:hover {
-    box-shadow: 0px 10px 20px 1px var(--colour_1);
-}
+    .weather_card:hover {
+        box-shadow: 0px 10px 20px 1px var(--colour_1);
+    }
 
-.weather_card sup {
-    font-size: 30px;
-}
+    .weather_card sup {
+        font-size: 30px;
+    }
 
 .weather_card_location, .weather_card_description {
     align-self: center;
@@ -95,17 +92,17 @@ header {
     color: darkgray;
 }
 
-.weather_card_temperature/*, .weather_card_extras*/ {
+.weather_card_temperature /*, .weather_card_extras*/ {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.weather_card_temperature h1 {
-    font-size: 70px;
-    font-weight: 300;
-}
+    .weather_card_temperature h1 {
+        font-size: 70px;
+        font-weight: 300;
+    }
 
 .weather_card_extras {
     display: flex;
@@ -114,31 +111,39 @@ header {
     align-items: center;
 }
 
-.weather_card_extras div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    .weather_card_extras div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
 .weather_card_precipitation, .weather_card_wind {
     max-width: 100px;
 }
 
-.weather_card_precipitation p, .weather_card_wind p {
-    font-size: smaller;
-}
+    .weather_card_precipitation p, .weather_card_wind p {
+        font-size: smaller;
+    }
 
-.weather_card_precipitation img, .weather_card_wind img {
-    object-fit: fill;
-    max-width: 80px;
-    max-height: 80px;
-}
-
-
+    .weather_card_precipitation img, .weather_card_wind img {
+        object-fit: fill;
+        max-width: 80px;
+        max-height: 80px;
+    }
 
 
+
+    /*test commit*/
 /* Delete me later */
 .weather_card {
-    margin: 50px 0px 0px 50px;
+evans_new_branch
+    margin: 300px 0px 0px 50px;
+}
+
+.weather_card_collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
