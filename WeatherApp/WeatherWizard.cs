@@ -103,22 +103,41 @@ namespace WeatherApp {
         }
 
         /*
-            * Method       : GetHourlyWeather()
-            * 
-            * Description  : Takes the city name, country code (optionl), and state code (optional) then requests
-            *                  the weather data from the open weather api through the RequestCurrentWeatherAPI function
-            *                  then returns the converted data.
-            * 
-            * Parameters   : string cityName       : The name of the city the user would like the weather info from
-            *                string countryCode    : The country the city is in (optional and just used to narrow down the location)
-            *                string stateCode      : The state the city is in (optional and just used to narrow down the location)
-            * 
-            * Returns      : JObject jsonData  : The response from the API as a JObject
-            *                null              : If API was unable to send back data
-            */
+        * Method       : GetHourlyWeather()
+        * 
+        * Description  : Takes the city name, country code (optionl), and state code (optional) then requests
+        *                  the weather data from the open weather api through the RequestCurrentWeatherAPI function
+        *                  then returns the converted data.
+        * 
+        * Parameters   : string cityName       : The name of the city the user would like the weather info from
+        *                string countryCode    : The country the city is in (optional and just used to narrow down the location)
+        *                string stateCode      : The state the city is in (optional and just used to narrow down the location)
+        * 
+        * Returns      : JObject jsonData  : The response from the API as a JObject
+        *                null              : If API was unable to send back data
+        */
         public static JObject GetHourlyWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
             var jsonData = RequestCurrentWeatherAPI(cityName, countryCode, stateCode);
             
+            // Return the API response as JObject
+            return jsonData;
+        }
+
+        /*
+        * Method       : GetHourlyWeather()
+        * 
+        * Description  : Takes the latitude and longitude then requests the weather data from the open weather 
+        *                   api through the RequestCurrentWeatherAPI function then returns the converted data.
+        * 
+        * Parameters   : string lat    : The latitude to be used for the weather location
+        *               string lon    : The longitude to be used for the weather location
+        * 
+        * Returns      : JObject jsonData  : The response from the API as a JObject
+        *                null              : If API was unable to send back data
+        */
+        public static JObject GetHourlyWeatherToJObject(string lat, string lon) {
+            var jsonData = RequestCurrentWeatherAPI(lat, lon);
+
             // Return the API response as JObject
             return jsonData;
         }
