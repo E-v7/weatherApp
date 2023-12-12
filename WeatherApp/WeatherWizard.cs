@@ -150,5 +150,32 @@ namespace WeatherApp {
 
             return weather;
         }
+
+        /*
+         * Method       : GetHourlyWeatherToWeatherObject()
+         * 
+         * Description  : Takes a city name, country, and state then requests data from the API
+         *                  before formatting it into the Weather object that holds the properties
+         *                  of the response objects
+         * 
+         * Parameters   : string lat    : The latitude to be used for the weather location
+         *                string lon    : The longitude to be used for the weather location
+         * 
+         * Returns      : Weather weather   : The response from the API as a Weather object
+         *                null              : If API was unable to send back data
+         */
+        public static Weather GetHourlyWeatherToWeatherObject(string lat, string lon) {
+            Weather weather = null;
+
+            var jsonData = RequestCurrentWeatherAPI(lat, lon);
+
+            weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
+
+            if (weather == null || weather.cod >= 400 && weather.cod <= 499) {
+                return null;
+            }
+
+            return weather;
+        }
     }
 }
