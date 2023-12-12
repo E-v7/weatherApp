@@ -10,44 +10,38 @@ using System.IO;
 namespace WeatherApp.Tests {
     [TestClass()]
     public class WeatherWizardTests {
-        static string logFile = "test_outputs/logs.txt";
-        public void WriteToLog(string funcName, string data) {
-            using (StreamWriter sw = new StreamWriter(logFile, true)) {
-                sw.WriteLine($"{DateTime.Now.ToString()} {funcName}\n{data}\n\n");
-            }
-        }
-
         [TestMethod()]
         public void GetHourlyWeatherTestWithAllParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo", "CA", "ON");
-
-            WriteToLog("GetHourlyWeatherTestWithAllParameters", data.ToString());
+            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo", "CA", "ON");
 
             Assert.IsNotNull(data);
         }
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithTwoParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo", "CA");
-
-            WriteToLog("GetHourlyWeatherTestWithTwoParameters", data.ToString());
+            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo", "CA");
 
             Assert.IsNotNull(data);
         }
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithOneParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJBject("Waterloo");
-
-            WriteToLog("GetHourlyWeatherTestWithOneParameters", data.ToString());
+            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo");
 
             Assert.IsNotNull(data);
         }
+        [TestMethod]
+        public void GetHourlyWeatherTest_WithBadParameter() {
+            var data = WeatherWizard.GetHourlyWeatherToJObject("bad request");
+
+            Assert.IsNull(data);
+        }
+
 
         [TestMethod()]
         public void GetHourlyWeatherToWeatherTest() {
-            var data = WeatherWizard.GetHourlyWeatherToWeatherObject("Waterloo");
-            
+            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("Waterloo");
+
             // Check coord data set properly
             Assert.IsNotNull(data.coord.lat);
             Assert.IsNotNull(data.coord.lon);
@@ -93,6 +87,25 @@ namespace WeatherApp.Tests {
             Assert.IsNotNull(data.id);
             Assert.IsNotNull(data.name);
             Assert.IsNotNull(data.cod);
+        }
+
+        [TestMethod]
+        public void GetHourlyWeatherToWeather_WithBadCity() {
+            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake");
+
+            Assert.IsNull(data);
+        }
+        [TestMethod()]
+        public void GetHourlyWeatherToWeather_WithBadCityAndCountry() {
+            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake", "mars");
+
+            Assert.IsNull(data);
+        }
+        [TestMethod()]
+        public void GetHourlyWeatherToWeather_WithBadCityAndCountryAndState() {
+            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake", "mars", "jupiter");
+
+            Assert.IsNull(data);
         }
     }
 }
