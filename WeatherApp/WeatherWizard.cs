@@ -135,8 +135,8 @@ namespace WeatherApp {
         * Returns      : JObject jsonData  : The response from the API as a JObject
         *                null              : If API was unable to send back data
         */
-        public static JObject GetCurrentWeatherToJObject(string lat, string lon) {
-            var jsonData = RequestCurrentWeatherAPI(lat, lon);
+        public static JObject GetCurrentWeatherToJObject(double lat, double lon) {
+            var jsonData = RequestCurrentWeatherAPI(lat.ToString(), lon.ToString());
 
             // Return the API response as JObject
             return jsonData;
