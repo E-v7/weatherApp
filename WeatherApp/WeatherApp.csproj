@@ -98,7 +98,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="WeatherMan.cs" />
+    <Compile Include="Weather.cs" />
+    <Compile Include="WeatherWizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
