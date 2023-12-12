@@ -161,9 +161,13 @@ namespace WeatherApp {
 
             var jsonData = GetCurrentWeatherToJObject(cityName, countryCode, stateCode);
 
+            if (weather == null) {
+                return null;
+            }
+
             weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
 
-            if (weather == null || weather.cod >= 400 && weather.cod <= 499) {
+            if (weather.cod >= 400 && weather.cod <= 499) {
                 return null;
             }
 

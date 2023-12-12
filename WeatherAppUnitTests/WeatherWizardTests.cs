@@ -95,17 +95,24 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
-        [TestMethod()]
+        [TestMethod]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountry() {
             Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars");
 
             Assert.IsNull(data);
         }
-        [TestMethod()]
+        [TestMethod]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountryAndState() {
             Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars", "jupiter");
 
             Assert.IsNull(data);
+        }
+
+        [TestMethod]
+        public void JObjectTesting() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
+
+            Assert.AreEqual("Waterloo", data.GetValue("name"));
         }
     }
 }
