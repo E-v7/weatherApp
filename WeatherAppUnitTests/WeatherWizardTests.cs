@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherApp.Tests {
     [TestClass()]
@@ -112,7 +113,10 @@ namespace WeatherApp.Tests {
         public void JObjectTesting() {
             var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
 
-            Assert.AreEqual("Waterloo", data.GetValue("name"));
+            Assert.AreEqual("Waterloo".ToLower(), data.GetValue("name").ToString().ToLower());
+            Assert.IsNotNull(data.GetValue("weather").ToString());
+            var test = data.GetValue("weather");
+            Assert.IsInstanceOfType(test, typeof(JArray));
         }
     }
 }
