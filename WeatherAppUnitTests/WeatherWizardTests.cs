@@ -12,27 +12,27 @@ namespace WeatherApp.Tests {
     public class WeatherWizardTests {
         [TestMethod()]
         public void GetHourlyWeatherTestWithAllParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo", "CA", "ON");
+            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo", "CA", "ON");
 
             Assert.IsNotNull(data);
         }
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithTwoParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo", "CA");
+            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo", "CA");
 
             Assert.IsNotNull(data);
         }
 
         [TestMethod()]
         public void GetHourlyWeatherTestWithOneParameters() {
-            var data = WeatherWizard.GetHourlyWeatherToJObject("Waterloo");
+            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
 
             Assert.IsNotNull(data);
         }
         [TestMethod]
         public void GetHourlyWeatherTest_WithBadParameter() {
-            var data = WeatherWizard.GetHourlyWeatherToJObject("bad request");
+            var data = WeatherWizard.GetCurrentWeatherToJObject("bad request");
 
             Assert.IsNull(data);
         }
@@ -40,7 +40,7 @@ namespace WeatherApp.Tests {
 
         [TestMethod()]
         public void GetHourlyWeatherToWeatherTest() {
-            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("Waterloo");
+            Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("Waterloo");
 
             // Check coord data set properly
             Assert.IsNotNull(data.coord.lat);
@@ -91,19 +91,19 @@ namespace WeatherApp.Tests {
 
         [TestMethod]
         public void GetHourlyWeatherToWeather_WithBadCity() {
-            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake");
+            Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake");
 
             Assert.IsNull(data);
         }
         [TestMethod()]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountry() {
-            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake", "mars");
+            Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars");
 
             Assert.IsNull(data);
         }
         [TestMethod()]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountryAndState() {
-            Weather data = WeatherWizard.GetHourlyWeatherToWeatherObject("moon landing was fake", "mars", "jupiter");
+            Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars", "jupiter");
 
             Assert.IsNull(data);
         }

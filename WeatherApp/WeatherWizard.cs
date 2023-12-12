@@ -116,7 +116,7 @@ namespace WeatherApp {
         * Returns      : JObject jsonData  : The response from the API as a JObject
         *                null              : If API was unable to send back data
         */
-        public static JObject GetHourlyWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
+        public static JObject GetCurrentWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
             var jsonData = RequestCurrentWeatherAPI(cityName, countryCode, stateCode);
             
             // Return the API response as JObject
@@ -135,7 +135,7 @@ namespace WeatherApp {
         * Returns      : JObject jsonData  : The response from the API as a JObject
         *                null              : If API was unable to send back data
         */
-        public static JObject GetHourlyWeatherToJObject(string lat, string lon) {
+        public static JObject GetCurrentWeatherToJObject(string lat, string lon) {
             var jsonData = RequestCurrentWeatherAPI(lat, lon);
 
             // Return the API response as JObject
@@ -156,10 +156,10 @@ namespace WeatherApp {
          * Returns      : Weather weather   : The newly created weather object
          *                null              : if the object couldn't be created
          */
-        public static Weather GetHourlyWeatherToWeatherObject(string cityName, string countryCode = null, string stateCode = null) {
+        public static Weather GetCurrentWeatherToWeatherObject(string cityName, string countryCode = null, string stateCode = null) {
             Weather weather = null;
 
-            var jsonData = GetHourlyWeatherToJObject(cityName, countryCode, stateCode);
+            var jsonData = GetCurrentWeatherToJObject(cityName, countryCode, stateCode);
 
             weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
 
@@ -183,7 +183,7 @@ namespace WeatherApp {
          * Returns      : Weather weather   : The response from the API as a Weather object
          *                null              : If API was unable to send back data
          */
-        public static Weather GetHourlyWeatherToWeatherObject(string lat, string lon) {
+        public static Weather GetCurrentWeatherToWeatherObject(string lat, string lon) {
             Weather weather = null;
 
             var jsonData = RequestCurrentWeatherAPI(lat, lon);
