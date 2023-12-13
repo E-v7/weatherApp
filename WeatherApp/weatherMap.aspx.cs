@@ -14,10 +14,11 @@ namespace WeatherApp
         protected void Page_Load(object sender, EventArgs e)
         {
             string apiKey = settings.APIKEY;
-            Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject("Bangalore");
+            Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject("waterloo");
             double latitude = weatherDetails.coord.lat;
             double longitude = weatherDetails.coord.lon;
-            string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" + weatherDetails.weather[0].description+"');";
+            string description = weatherDetails.weather[0].description;
+            string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" +description+"');";
             ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
         }
     }

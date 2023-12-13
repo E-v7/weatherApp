@@ -9,29 +9,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link href="styles/style.css" rel="stylesheet" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="text/javascript" src="scripts/weatherMap_script.js"></script>
 <style>
     #map {
-        height: 500px;
+        height: 600px;
         width: 100%;
     }
 </style>
-<script>
-    function initMap(latitude, longitude, apiKey, description) {
-        var map = L.map('map');
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 9,
-        }).addTo(map);
-
-        var weatherLayer = L.tileLayer('https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid=' + apiKey, {
-            layer: 'temp_new',
-            maxZoom: 9
-        }).addTo(map);
-
-        map.setView([latitude, longitude], 5);  //zoom in to the location
-        L.marker([latitude, longitude]).addTo(map).bindPopup(description).openPopup(); //set a marker
-    }
-</script>
 </head>
 <body>
     <form id="weatherMap" runat="server">
