@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherApp.Tests {
     [TestClass()]
@@ -95,17 +96,29 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
-        [TestMethod()]
+        [TestMethod]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountry() {
             Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars");
 
             Assert.IsNull(data);
         }
-        [TestMethod()]
+        [TestMethod]
         public void GetHourlyWeatherToWeather_WithBadCityAndCountryAndState() {
             Weather data = WeatherWizard.GetCurrentWeatherToWeatherObject("moon landing was fake", "mars", "jupiter");
 
             Assert.IsNull(data);
+        }
+
+        [TestMethod]
+        public void JObjectTesting() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
+
+            Assert.AreEqual("Waterloo".ToLower(), data.GetValue("name").ToString().ToLower());
+            Assert.IsNotNull(data.GetValue("weather").ToString());
+            var test = data.GetValue("weather");
+            Assert.IsInstanceOfType(test, typeof(JArray));
+
+            var dateTime = DateTime.Parse("1702250463").ToString();
         }
     }
 }
