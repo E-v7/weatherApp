@@ -16,8 +16,8 @@
     }
 </style>
 <script>
-    function initMap(apiKey) {
-        var map = L.map('map').setView([0, 0], 2);
+    function initMap(latitude, longitude, apiKey, description) {
+        var map = L.map('map');
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 9,
@@ -27,6 +27,9 @@
             layer: 'temp_new',
             maxZoom: 9
         }).addTo(map);
+
+        map.setView([latitude, longitude], 5);  //zoom in to the location
+        L.marker([latitude, longitude]).addTo(map).bindPopup(description).openPopup(); //set a marker
     }
 </script>
 </head>
