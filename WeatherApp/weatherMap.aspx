@@ -27,7 +27,7 @@
                 <a href="weatherMap.aspx">WeatherMap</a>
                 <div class="searchbox">
                     <input class="textbox" id="city" name="city" type="text"/>
-                    <asp:Button ID="getWeatherButton" runat="server" Text="Go" />
+                    <asp:Button ID="getWeatherButton" runat="server" Text="Go" OnClick="GoToLocation" />
                 </div>
             </div>
         </header>
