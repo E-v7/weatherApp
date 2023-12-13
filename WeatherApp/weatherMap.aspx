@@ -16,13 +16,17 @@
     }
 </style>
 <script>
-    function initMap() {
+    function initMap(apiKey) {
         var map = L.map('map').setView([0, 0], 2);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
+            maxZoom: 9,
         }).addTo(map);
 
+        var weatherLayer = L.tileLayer('https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid=' + apiKey, {
+            layer: 'temp_new',
+            maxZoom: 9
+        }).addTo(map);
     }
 </script>
 </head>

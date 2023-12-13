@@ -17,7 +17,7 @@ namespace WeatherApp
             Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject("Bangalore");
             double latitude = weatherDetails.coord.lat;
             double longitude = weatherDetails.coord.lon;
-            string script = "initMap();";
+            string script = "initMap('" + apiKey + "');";
             ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
         }
     }
