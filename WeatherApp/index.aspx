@@ -48,15 +48,19 @@
                         <asp:TextBox runat="server" id="firstName" CssClass="input-field "></asp:TextBox>
                         <label for="lastName">Last Name</label>
                         <asp:TextBox runat="server" id="lastName" CssClass="input-field "></asp:TextBox>
-                        <label for="userName">Username</label>
-                        <asp:TextBox runat="server" id="userName" CssClass="input-field "></asp:TextBox>
-                        <label for="email">Email</label>
-                        <asp:TextBox runat="server" id="email" CssClass="input-field "></asp:TextBox>
-                        <label for="passWord">Password</label>
-                        <asp:TextBox runat="server" id="passWord" CssClass="input-field "></asp:TextBox>
+                        <label for="emailAddress">Email</label>
+                        <asp:TextBox runat="server" id="emailAddress" CssClass="input-field "></asp:TextBox>
+                        <label for="regUsername">Username</label>
+                        <asp:TextBox runat="server" id="regUsername" CssClass="input-field "></asp:TextBox>
+                        <label for="regPassword">Password</label>
+                        <asp:TextBox runat="server" id="regPassword" CssClass="input-field "></asp:TextBox>
+                        <label for="confirmPassword">Confirm Password</label>
+                        <asp:TextBox runat="server" id="confirmPassword" CssClass="input-field "></asp:TextBox>
+
+                        <asp:Button runat="server" id="register" Text="Register" CssClass="register-button" OnClick="Register_Click"/>
                     </div>
 
-                    <a href="#" class="link-style">Register for an account now!</a>
+                    <a href="javascript:void(0);" class="link-style" onclick="toggleRegistrationForm(); return false;">Register for an account now!</a>
                     <a href="#" class="link-style">Forgot username or password?</a>
                     
                 </div>
