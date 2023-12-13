@@ -37,7 +37,18 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
+        [TestMethod]
+        public void GetHourlyWeatherTest_WithTwoBadParameter() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("bad request", "bad request");
 
+            Assert.IsNull(data);
+        }
+        [TestMethod]
+        public void GetHourlyWeatherTest_WithThreeBadParameter() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("bad request", "bad request", "bad request");
+
+            Assert.IsNull(data);
+        }
 
         [TestMethod()]
         public void GetHourlyWeatherToWeatherTest() {
@@ -108,7 +119,5 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
-
-        
     }
 }
