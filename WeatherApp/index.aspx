@@ -19,6 +19,7 @@
                 <a href="#">OTHER</a>
                 <div class="searchbox">
                     <input class="textbox" id="city" name="city" type="text"/>
+
                 </div>
             </div>
         </header>
@@ -40,6 +41,7 @@
                 <a href="#" id="registerLink">Register online now</a>
             </div>
         </div>
+
     </form>
 </body>
 </html>

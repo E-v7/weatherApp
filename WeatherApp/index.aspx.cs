@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WeatherApp.Properties;
 
 namespace WeatherApp {
     public partial class index : System.Web.UI.Page 
