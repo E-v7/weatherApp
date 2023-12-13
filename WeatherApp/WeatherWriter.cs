@@ -42,8 +42,8 @@ namespace WeatherApp {
             string windSpeed;
 
             // We can source any image for these
-            string windIcon = "images/generic.png";
-            string humidityIcon = "images/generic.png";
+            string windIcon = "images/wind.png";
+            string humidityIcon = "images/humidity.png";
 
             // Current date
             string dateTime = DateTime.Now.ToString();
@@ -64,7 +64,7 @@ namespace WeatherApp {
 
             // Get tempurature
             if (!weatherData.TryGetValue("main", out token)) { return null; }
-            tempCelcius = String.Format("{0:0.0}", ((double)token["temp"] - 273.15)); // Convert to celcius
+            tempCelcius = String.Format("{0:0.0}", ((double)token["temp"] - 273.15)); // Convert to celcius from kelvin
             humidity = token["humidity"].ToString();
 
             if (!weatherData.TryGetValue("wind", out token)) { return null; }
@@ -82,12 +82,12 @@ namespace WeatherApp {
                     "" +
                     "<div class=\"weather_card_extras\">" +
                         "<div class=\"weather_card_precipitation\">" +
-                           $"<img src = \"images/{humidityIcon}.png\" />" +
+                           $"<img src = \"{humidityIcon}\" />" +
                            $"<p> {humidity}% Precp </p>" +
                         "</div>" +
                         "" +
                         "<div class=\"weather_card_wind\">" +
-                           $"<img src = \"images/{windIcon}.png\" />" +
+                           $"<img src = \"{windIcon}\" />" +
                            $"<p> {windSpeed} m/s Winds</p>" +
                         "</div>" +
                     "</div>" +
