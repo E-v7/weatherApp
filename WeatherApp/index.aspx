@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="right-container">
-                <div class="login-container">
+                <div id="loginContainer" class="login-container">
                     <label for="userName">Username or Email</label>
                     <asp:TextBox runat="server" id="userName" CssClass="input-field"></asp:TextBox>
 
@@ -44,27 +44,26 @@
 
                     <asp:Button runat="server" id="login" Text="Login" CssClass="login-button" OnClick="Login_Click"/>
 
-                    <div id="registrationCont" class="registration-container" >
-                        <label for="firstName">First Name</label>
-                        <asp:TextBox runat="server" id="firstName" CssClass="input-field "></asp:TextBox>
-                        <label for="lastName">Last Name</label>
-                        <asp:TextBox runat="server" id="lastName" CssClass="input-field "></asp:TextBox>
-                        <label for="emailAddress">Email</label>
-                        <asp:TextBox runat="server" id="emailAddress" CssClass="input-field "></asp:TextBox>
-                        <label for="regUsername">Username</label>
-                        <asp:TextBox runat="server" id="regUsername" CssClass="input-field "></asp:TextBox>
-                        <label for="regPassword">Password</label>
-                        <asp:TextBox runat="server" id="regPassword" CssClass="input-field "></asp:TextBox>
-                        <label for="confirmPassword">Confirm Password</label>
-                        <asp:TextBox runat="server" id="confirmPassword" CssClass="input-field "></asp:TextBox>
-
-                        <asp:Button runat="server" id="register" Text="Register" CssClass="register-button" OnClick="Register_Click"/>
-                    </div>
-
-                    <a href="javascript:void(0);" class="link-style" onclick="toggleRegistrationForm(); return false;">Register for an account now!</a>
                     <a href="#" class="link-style">Forgot username or password?</a>
-                    
+                    <a href="javascript:void(0);" class="link-style" onclick="toggleRegistrationForm(); return false;">Register for an account now!</a>
                 </div>
+                <div id="registrationCont" class="registration-container" style="display:none;">
+                    <label for="firstName">First Name</label>
+                    <asp:TextBox runat="server" id="firstName" CssClass="input-field "></asp:TextBox>
+                    <label for="lastName">Last Name</label>
+                    <asp:TextBox runat="server" id="lastName" CssClass="input-field "></asp:TextBox>
+                    <label for="emailAddress">Email</label>
+                    <asp:TextBox runat="server" id="emailAddress" CssClass="input-field "></asp:TextBox>
+                    <label for="regUsername">Username</label>
+                    <asp:TextBox runat="server" id="regUsername" CssClass="input-field "></asp:TextBox>
+                    <label for="regPassword">Password</label>
+                    <asp:TextBox runat="server" id="regPassword" CssClass="input-field "></asp:TextBox>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <asp:TextBox runat="server" id="confirmPassword" CssClass="input-field "></asp:TextBox>
+
+                    <asp:Button runat="server" id="register" Text="Register" CssClass="register-button" OnClick="Register_Click"/>
+                </div>                    
+                
             </div>
         </div>
 
