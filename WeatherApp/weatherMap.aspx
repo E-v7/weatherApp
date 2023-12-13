@@ -1,15 +1,46 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="weatherMap.aspx.cs" Inherits="WeatherApp.styles.weatherMap" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="weatherMap.aspx.cs" Inherits="WeatherApp.weatherMap" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Weather Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="styles/style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+    }
+</style>
+<script>
+    function initMap() {
+        var map = L.map('map').setView([0, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+    }
+</script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
+    <form id="weatherMap" runat="server">
+        <header>
+            <h1 id="title">The Weather App</h1>
+            <div id="navigation_bar">
+                <a href="index.aspx">Home</a>
+                <a href="hourlyWeather.aspx">Hourly</a>
+                <a href="weatherMap.aspx">WeatherMap</a>
+                <div class="searchbox">
+                    <input class="textbox" id="city" name="city" type="text"/>
+                    <asp:Button ID="getWeatherButton" runat="server" Text="Go" />
+                </div>
+            </div>
+        </header>
+        <div id="map"></div>
     </form>
 </body>
 </html>
