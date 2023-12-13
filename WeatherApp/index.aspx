@@ -6,6 +6,8 @@
 <head runat="server">
     <title>Weather App Home</title>
     <link href="styles/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
 </head>
 <body>
     <form id="MainPageForm" runat="server">
@@ -17,131 +19,27 @@
                 <a href="#">OTHER</a>
                 <div class="searchbox">
                     <input class="textbox" id="city" name="city" type="text"/>
-                    <asp:Button ID="getWeatherButton" runat="server" Text="Go" OnClick="GetWeather" />
                 </div>
             </div>
         </header>
-        
-      <%--   <div id="weather_card_collection">
-            <div class="weather_card">
-                <h2 class="weather_card_location">Waterloo</h2>
-                <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-                <div class="weather_card_temperature">
-                    <h1>23<sup>&deg;C</sup></h1>
-                    <img src="images/clear-sky-day.png" />
-                </div>
-                <div class="weather_card_extras">
-                    <div class="weather_card_precipitation">
-                        <img src="images/rain-day.png" />
-                        <p>2% Precp</p>
-                    </div>
-                    <div class="weather_card_wind">
-                        <img src="images/mist-day.png" />
-                        <p>23 km/h Winds</p>
-                    </div>
+        <div class="main-container">
+            <div class="left-container">
+                <h2>Do you consent to sharing your location?</h2>
+                <label class="switch">
+                    <input type="checkbox" id="consentToggle"/>
+                    <span class="slider round"></span>
+                </label>
+                <div id="weatherDetails" class="weather-details">
+                    <!-- Weather details will be displayed here -->
                 </div>
             </div>
-
-            <div class="weather_card">
-                <h2 class="weather_card_location">Waterloo</h2>
-                <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-                <div class="weather_card_temperature">
-                    <h1>23<sup>&deg;C</sup></h1>
-                    <img src="images/clear-sky-day.png" />
-                </div>
-                <div class="weather_card_extras">
-                    <div class="weather_card_precipitation">
-                        <img src="images/rain-day.png" />
-                        <p>2% Precp</p>
-                    </div>
-                    <div class="weather_card_wind">
-                        <img src="images/mist-day.png" />
-                        <p>23 km/h Winds</p>
-                    </div>
-                </div>
+            <div class="right-container">
+                <input type="text" id="username" />
+                <input type="password" id="password" />
+                <button id="login">Login</button>
+                <a href="#" id="registerLink">Register online now</a>
             </div>
-
-            <div class="weather_card">
-                <h2 class="weather_card_location">Waterloo</h2>
-                <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-                <div class="weather_card_temperature">
-                    <h1>23<sup>&deg;C</sup></h1>
-                    <img src="images/clear-sky-day.png" />
-                </div>
-                <div class="weather_card_extras">
-                    <div class="weather_card_precipitation">
-                        <img src="images/rain-day.png" />
-                        <p>2% Precp</p>
-                    </div>
-                    <div class="weather_card_wind">
-                        <img src="images/mist-day.png" />
-                        <p>23 km/h Winds</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="weather_card">
-                <h2 class="weather_card_location">Waterloo</h2>
-                <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-                <div class="weather_card_temperature">
-                    <h1>23<sup>&deg;C</sup></h1>
-                    <img src="images/clear-sky-day.png" />
-                </div>
-                <div class="weather_card_extras">
-                    <div class="weather_card_precipitation">
-                        <img src="images/rain-day.png" />
-                        <p>2% Precp</p>
-                    </div>
-                    <div class="weather_card_wind">
-                        <img src="images/mist-day.png" />
-                        <p>23 km/h Winds</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="weather_card">
-                <h2 class="weather_card_location">Waterloo</h2>
-                <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-                <div class="weather_card_temperature">
-                    <h1>23<sup>&deg;C</sup></h1>
-                    <img src="images/clear-sky-day.png" />
-                </div>
-                <div class="weather_card_extras">
-                    <div class="weather_card_precipitation">
-                        <img src="images/rain-day.png" />
-                        <p>2% Precp</p>
-                    </div>
-                    <div class="weather_card_wind">
-                        <img src="images/mist-day.png" />
-                        <p>23 km/h Winds</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <%--<div class="weather_card">
-            <h2 class="weather_card_location">Waterloo</h2>
-            <p class="weather_card_description">Mon 1:00 PM, Mostly Sunny</p>
-            <div class="weather_card_temperature">
-                <h1>23<sup>&deg;C</sup></h1>
-                <img src="images/clear-sky-day.png" />
-            </div>
-            <div class="weather_card_extras">
-                <div class="weather_card_precipitation">
-                    <img src="images/rain-day.png" />
-                    <p>2% Precp</p>
-                </div>
-                <div class="weather_card_wind">
-                    <img src="images/mist-day.png" />
-                    <p>23 km/h Winds</p>
-                </div>
-            </div>
-        </div>--%>
-        <div>
-            <asp:Literal ID="WeatherOutput" runat="server"></asp:Literal>
         </div>
     </form>
-
-    <script type="text/javascript" src="scripts/script.js"></script>
 </body>
 </html>
