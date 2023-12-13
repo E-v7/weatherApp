@@ -64,7 +64,7 @@ namespace WeatherApp {
 
             // Get tempurature
             if (!weatherData.TryGetValue("main", out token)) { return null; }
-            tempCelcius = (((double)token["temp"] - 32) * 5/9).ToString(); // Convert to celcius
+            tempCelcius = String.Format("{0:0.0}", ((double)token["temp"] - 273.15)); // Convert to celcius
             humidity = token["humidity"].ToString();
 
             if (!weatherData.TryGetValue("wind", out token)) { return null; }

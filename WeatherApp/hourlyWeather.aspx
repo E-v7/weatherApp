@@ -17,9 +17,8 @@
                 <a href="#">OTHER</a>
             </div>
         </header>
-        <div>
-            <p>This is the hourly page for the webapp</p>
-        </div>
+
+        <div id="testing" runat="server"></div>
     </form>
 </body>
 </html>
