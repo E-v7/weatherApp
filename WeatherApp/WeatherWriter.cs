@@ -32,7 +32,7 @@ namespace WeatherApp {
 
             // Stored in weather array as object
             string weatherDescription;
-            string weatherIcon = ""; // set this later, must be dynamic to the condition            [ IMPORTANT, FEATURE NOT IMPLEMENTED ]
+            string weatherIcon;
 
             // Stored in main object
             string tempCelcius;
@@ -60,6 +60,7 @@ namespace WeatherApp {
             arr = token.ToObject<JArray>(); // Convert to JArray
             weatherDescription = arr.First.Value<string>("description"); // Only contains one object so pull out description from first
             if (weatherDescription == null) { return null; }
+            weatherIcon = $"https://openweathermap.org/img/wn/{arr.First["icon"].ToString()}@2x.png";
 
             // Get tempurature
             if (!weatherData.TryGetValue("main", out token)) { return null; }
