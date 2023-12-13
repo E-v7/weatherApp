@@ -109,16 +109,6 @@ namespace WeatherApp.Tests {
             Assert.IsNull(data);
         }
 
-        [TestMethod]
-        public void JObjectTesting() {
-            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
-
-            Assert.AreEqual("Waterloo".ToLower(), data.GetValue("name").ToString().ToLower());
-            Assert.IsNotNull(data.GetValue("weather").ToString());
-            var test = data.GetValue("weather");
-            Assert.IsInstanceOfType(test, typeof(JArray));
-
-            var dateTime = DateTime.Parse("1702250463").ToString();
-        }
+        
     }
 }

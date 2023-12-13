@@ -25,8 +25,6 @@ namespace WeatherApp {
                 return null;
             }
 
-            
-
             // Stored in object
             string cityName;
 
