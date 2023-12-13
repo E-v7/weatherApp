@@ -83,12 +83,14 @@ namespace WeatherApp {
                     "<div class=\"weather_card_extras\">" +
                         "<div class=\"weather_card_precipitation\">" +
                            $"<img src = \"{humidityIcon}\" />" +
-                           $"<p> {humidity}% Precp </p>" +
+                           $"<p> {humidity}%</p>" +
+                           "<p>Humidity</p>" +
                         "</div>" +
                         "" +
                         "<div class=\"weather_card_wind\">" +
                            $"<img src = \"{windIcon}\" />" +
-                           $"<p> {windSpeed} m/s Winds</p>" +
+                           $"<p> {windSpeed} m/s</p>" +
+                           "<p>Wind Speed</p>" +
                         "</div>" +
                     "</div>" +
                 "</div>";
