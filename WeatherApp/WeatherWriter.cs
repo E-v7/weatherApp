@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,17 +25,49 @@ namespace WeatherApp {
                 return null;
             }
 
-            string weatherDescription;
-            string weatherIcon;
-            string tempCelcius;
-            string humidity;
-            string humidityIcon;
-            string windSpeed;
-            string windIcon;
-            string dateTime;
+            
+
+            // Stored in object
             string cityName;
 
+            // Stored in weather array as object
+            string weatherDescription;
+            string weatherIcon = ""; // set this later, must be dynamic to the condition            [ IMPORTANT, FEATURE NOT IMPLEMENTED ]
+
+            // Stored in main object
+            string tempCelcius;
+            string humidity;
+
+            // Stored in wind object
+            string windSpeed;
+
+            // We can source any image for these
+            string windIcon = "images/generic.png";
+            string humidityIcon = "images/generic.png";
+
+            // Current date
+            string dateTime = DateTime.Now.ToString();
+
             // Set above data using weatherData object
+            JToken token;
+            JArray arr;
+
+            if (!weatherData.TryGetValue("name", out token)) { return null; }
+            cityName = token.ToString();
+
+            // Set weather description
+            if (!weatherData.TryGetValue("weather", out token)) { return null; } // Get weather value
+            arr = token.ToObject<JArray>(); // Convert to JArray
+            weatherDescription = arr.First.Value<string>("description"); // Only contains one object so pull out description from first
+            if (weatherDescription == null) { return null; }
+
+            // Get tempurature
+            if (!weatherData.TryGetValue("main", out token)) { return null; }
+            tempCelcius = (((double)token["temp"] - 32) * 5/9).ToString(); // Convert to celcius
+            humidity = token["humidity"].ToString();
+
+            if (!weatherData.TryGetValue("wind", out token)) { return null; }
+            windSpeed = token["speed"].ToString(); // meters per second
 
             card += "" +
                 "<div class=\"weather_card\">" +
@@ -43,7 +76,7 @@ namespace WeatherApp {
                     "" +
                     "<div class=\"weather_card_temperature\">" +
                        $"<h1>{tempCelcius}<sup>&deg;C</sup></h1>" +
-                       $"<img src = \"images/{weatherIcon}.png\" />" +
+                       $"<img src = \"{weatherIcon}\" />" +
                     "</div>" +
                     "" +
                     "<div class=\"weather_card_extras\">" +
@@ -54,7 +87,7 @@ namespace WeatherApp {
                         "" +
                         "<div class=\"weather_card_wind\">" +
                            $"<img src = \"images/{windIcon}.png\" />" +
-                           $"<p> {windSpeed} km/h Winds</p>" +
+                           $"<p> {windSpeed} m/s Winds</p>" +
                         "</div>" +
                     "</div>" +
                 "</div>";

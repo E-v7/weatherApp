@@ -117,6 +117,8 @@ namespace WeatherApp.Tests {
             Assert.IsNotNull(data.GetValue("weather").ToString());
             var test = data.GetValue("weather");
             Assert.IsInstanceOfType(test, typeof(JArray));
+
+            var dateTime = DateTime.Parse("1702250463").ToString();
         }
     }
 }

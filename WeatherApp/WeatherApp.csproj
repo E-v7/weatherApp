@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Weather.cs" />
     <Compile Include="WeatherWizard.cs" />
+    <Compile Include="WeatherWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
