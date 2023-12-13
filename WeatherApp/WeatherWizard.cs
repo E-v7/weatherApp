@@ -236,7 +236,7 @@ namespace WeatherApp {
          * Returns      : JObject jsonData  : The newly created JObject
          *                null              : if the object couldn't be created
          */
-         public static JObject Get5DayWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
+        public static JObject Get5DayWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
             JObject jsonData;
 
             string url = $"api.openweathermap.org/data/2.5/forecast?q={cityName}";
