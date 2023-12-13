@@ -49,6 +49,7 @@ header {
         transition: background-size 0.1s ease-in-out, color 0.1s ease-in-out;
     }
 
+
         #navigation_bar a:hover {
             background-size: 100% 1.5px;
             color: palevioletred;
@@ -238,6 +239,7 @@ label {
     border-radius: 4px;
     cursor: pointer;
 }
+
 
 /* weather card css styling*/
 .weather_card * {
