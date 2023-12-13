@@ -34,10 +34,18 @@
                 </div>
             </div>
             <div class="right-container">
-                <input type="text" id="username" />
-                <input type="password" id="password" />
-                <button id="login">Login</button>
-                <a href="#" id="registerLink">Register online now</a>
+                <div class="login-container">
+                    <label for="userName">Username or Email</label>
+                    <asp:TextBox runat="server" id="username" CssClass="input-field"></asp:TextBox>
+
+                    <label for="password">Password</label>
+                    <asp:TextBox runat="server" id="password" TextMode="Password" CssClass="input-field"></asp:TextBox>
+
+                    <asp:Button runat="server" id="login" Text="Login" CssClass="login-button" OnClick="Login_Click"/>
+
+                    <a href="#" class="link-style">Forgot username or password?</a>
+                    <a href="#" class="link-style">Register for an account now!</a>
+                </div>
             </div>
         </div>
     </form>
