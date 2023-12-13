@@ -57,13 +57,7 @@ header {
 
 /* index or homepage floating containers and ui styling */
 
-/* Main container styling */
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+
 
 /* Consent container styling */
 .consent-container {
@@ -142,6 +136,27 @@ input:checked + .slider:before {
     margin-top: 20px;
 }
 
+
+/* log in and registeration styling within the floating rectangle*/
+
+/* Main container styling */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #4CAF50; 
+}
+
+/* Left and right container styling */
+.left-container, .right-container {
+    background-color: #ffffe0; /* Light yellow background */
+    width: 50%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 10px;
+}
 
 
 /* weather card css styling*/
