@@ -36,15 +36,29 @@
             <div class="right-container">
                 <div class="login-container">
                     <label for="userName">Username or Email</label>
-                    <asp:TextBox runat="server" id="username" CssClass="input-field"></asp:TextBox>
+                    <asp:TextBox runat="server" id="userName" CssClass="input-field"></asp:TextBox>
 
-                    <label for="password">Password</label>
-                    <asp:TextBox runat="server" id="password" TextMode="Password" CssClass="input-field"></asp:TextBox>
+                    <label for="passWord">Password</label>
+                    <asp:TextBox runat="server" id="passWord" TextMode="Password" CssClass="input-field"></asp:TextBox>
 
                     <asp:Button runat="server" id="login" Text="Login" CssClass="login-button" OnClick="Login_Click"/>
 
-                    <a href="#" class="link-style">Forgot username or password?</a>
+                    <div id="registrationCont" class="registration-container" >
+                        <label for="firstName">First Name</label>
+                        <asp:TextBox runat="server" id="firstName" CssClass="input-field "></asp:TextBox>
+                        <label for="lastName">Last Name</label>
+                        <asp:TextBox runat="server" id="lastName" CssClass="input-field "></asp:TextBox>
+                        <label for="userName">Username</label>
+                        <asp:TextBox runat="server" id="userName" CssClass="input-field "></asp:TextBox>
+                        <label for="email">Email</label>
+                        <asp:TextBox runat="server" id="email" CssClass="input-field "></asp:TextBox>
+                        <label for="passWord">Password</label>
+                        <asp:TextBox runat="server" id="passWord" CssClass="input-field "></asp:TextBox>
+                    </div>
+
                     <a href="#" class="link-style">Register for an account now!</a>
+                    <a href="#" class="link-style">Forgot username or password?</a>
+                    
                 </div>
             </div>
         </div>
