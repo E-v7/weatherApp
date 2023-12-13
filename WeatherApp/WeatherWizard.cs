@@ -135,8 +135,8 @@ namespace WeatherApp {
         * Returns      : JObject jsonData  : The response from the API as a JObject
         *                null              : If API was unable to send back data
         */
-        public static JObject GetCurrentWeatherToJObject(string lat, string lon) {
-            var jsonData = RequestCurrentWeatherAPI(lat, lon);
+        public static JObject GetCurrentWeatherToJObject(double lat, double lon) {
+            var jsonData = RequestCurrentWeatherAPI(lat.ToString(), lon.ToString());
 
             // Return the API response as JObject
             return jsonData;
@@ -161,9 +161,13 @@ namespace WeatherApp {
 
             var jsonData = GetCurrentWeatherToJObject(cityName, countryCode, stateCode);
 
+            if (jsonData == null) {
+                return null;
+            }
+
             weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
 
-            if (weather == null || weather.cod >= 400 && weather.cod <= 499) {
+            if (weather.cod >= 400 && weather.cod <= 499) {
                 return null;
             }
 
@@ -177,16 +181,16 @@ namespace WeatherApp {
          *                  before formatting it into the Weather object that holds the properties
          *                  of the response objects
          * 
-         * Parameters   : string lat    : The latitude to be used for the weather location
-         *                string lon    : The longitude to be used for the weather location
+         * Parameters   : double lat    : The latitude to be used for the weather location
+         *                double lon    : The longitude to be used for the weather location
          * 
          * Returns      : Weather weather   : The response from the API as a Weather object
          *                null              : If API was unable to send back data
          */
-        public static Weather GetCurrentWeatherToWeatherObject(string lat, string lon) {
+        public static Weather GetCurrentWeatherToWeatherObject(double lat, double lon) {
             Weather weather = null;
 
-            var jsonData = RequestCurrentWeatherAPI(lat, lon);
+            var jsonData = RequestCurrentWeatherAPI(lat.ToString(), lon.ToString());
 
             weather = JsonConvert.DeserializeObject<Weather>(jsonData.ToString());
 
@@ -196,5 +200,59 @@ namespace WeatherApp {
 
             return weather;
         }
+
+        /*
+         * Method       : Get5DayWeatherToJObject
+         * 
+         * Description  : Gets the 5 day weather using the latitude and longitude before
+         *                  returning a JObject containing the information
+         *                  
+         * Parameters   : double lat    : The latitude to be used for the weather location
+         *                double lon    : The longitude to be used for the weather location
+         *                
+         * Returns      : JObject jsonData  : The response from the API as a JObject
+         *                null              : If API was unable to send back data
+         */
+        public static JObject Get5DayWeatherToJObject(double lat, double lon) {
+            JObject jsonData;
+
+            string url = $"api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={settings.APIKEY}";
+            jsonData = RequestAPI(url);
+
+            return jsonData;
+        }
+
+        /*
+         * Method       : Get5DayWeatherToJObject
+         * 
+         * Description  : Gets the 5 day weather using the city, country code (optional), and
+         *                  state code (optional) before returning a JObject containing the 
+         *                  returned data as a JObject
+         * 
+         * Parameters   : string cityName       : The name of the city the user would like the weather info from
+         *                string countryCode    : The country the city is in (optional and just used to narrow down the location)
+         *                string stateCode      : The state the city is in (optional and just used to narrow down the location)
+         * 
+         * Returns      : JObject jsonData  : The newly created JObject
+         *                null              : if the object couldn't be created
+         */
+        public static JObject Get5DayWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
+            JObject jsonData;
+
+            string url = $"api.openweathermap.org/data/2.5/forecast?q={cityName}";
+            if (!string.IsNullOrEmpty(stateCode)) {
+                url += $",{stateCode}";
+            }
+            if (!string.IsNullOrEmpty(countryCode)) {
+                url += $",{countryCode}";
+            }
+            url += $"&appid={settings.APIKEY}";
+
+            jsonData = RequestAPI(url);
+
+            return jsonData;
+        }
+
+
     }
 }
