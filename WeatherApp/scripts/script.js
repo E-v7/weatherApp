@@ -67,7 +67,7 @@ function displayWeather(weatherData) {
 
     // Create HTML content for the weather details
     var content = '<h2>Current Weather for ' + weather.name + '</h2>';
-    content += '<div><strong>Temperature:</strong> ' + weather.main.temp + '°F</div>';
+    content += '<div><strong>Temperature:</strong> ' + weather.main.temp + '°K</div>';
     content += '<div><strong>Weather:</strong> ' + weather.weather[0].main + ' (' + weather.weather[0].description + ')</div>';
     content += '<div><strong>Humidity:</strong> ' + weather.main.humidity + '%</div>';
     content += '<div><strong>Wind Speed:</strong> ' + weather.wind.speed + ' m/s</div>';
@@ -96,7 +96,16 @@ function showError(error) {
     }
 }
 
-
+/*
+ * FUNCTION      :
+ *
+ * DESCRIPTION   :
+ * 
+ * PARAMETERS    :
+ * 
+ * RETURNS       :
+ * 
+ */ 
 function toggleRegistrationForm() {
     var loginContainer = document.getElementById('loginContainer');
     var regContainer = document.getElementById('registrationCont');
