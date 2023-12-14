@@ -28,12 +28,15 @@ namespace WeatherApp
         protected void GoToLocation(object sender, EventArgs e)
         {
             string city = Request.Form["city"];
-            Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject(city);
-            double latitude = weatherDetails.coord.lat;
-            double longitude = weatherDetails.coord.lon;
-            string description = weatherDetails.weather[0].description;
-            string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" + description + "');";
-            ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
+            if (city != "")
+            {
+                Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject(city);
+                double latitude = weatherDetails.coord.lat;
+                double longitude = weatherDetails.coord.lon;
+                string description = weatherDetails.weather[0].description;
+                string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" + description + "');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
+            }
         }
     }
 }
