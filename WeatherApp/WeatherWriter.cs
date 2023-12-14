@@ -95,5 +95,24 @@ namespace WeatherApp {
 
             return card;
         }
+
+        /*
+         * Method       : Create5DayWeatherCard()
+         * 
+         * Description  : Generates a string that contains html elements that combined with
+         *                  css, will be styled into a nicely formatted display of weather info
+         * 
+         * Parameters   : JObject weatherData - The json object containing all weather data
+         * 
+         * Returns      : string formattedData  : The string containing the html read to be displayed on the webpage
+         *                null                  : If any issue is encountered
+         */
+        public static string Create5DayWeatherCard(JObject weatherData) {
+            string formattedData = null;
+
+
+
+            return formattedData;
+        }
     }
 }

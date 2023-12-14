@@ -13,7 +13,7 @@
             <h1 id="title">The Weather App</h1>
             <div id="navigation_bar">
                 <a href="index.aspx">Home</a>
-                <a href="hourlyWeather.aspx">Hourly</a>
+                <a href="hourlyWeather.aspx">Current</a>
                 <a href="#">OTHER</a>
             </div>
         </header>

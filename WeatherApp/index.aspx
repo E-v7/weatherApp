@@ -15,10 +15,10 @@
             <h1 id="title">The Weather App</h1>
             <div id="navigation_bar">
                 <a href="index.aspx">Home</a>
-                <a href="hourlyWeather.aspx">Hourly</a>
+                <a href="hourlyWeather.aspx">Current</a>
                 <a href="#">OTHER</a>
                 <div class="searchbox">
-                    <input class="textbox" id="city" name="city" type="text"/>
+                    <input class="textbox" id="city" name="city" placeholder="Enter a location" type="text"/>
 
                 </div>
             </div>
