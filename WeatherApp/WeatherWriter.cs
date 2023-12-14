@@ -19,6 +19,7 @@ namespace WeatherApp {
          *                null          : if a bad parameter is passed
          */
         public static string CreateCurrentWeatherCard(JObject weatherData) {
+            const string badData = "Something went wrong and the data provided couldn't be used";
             string card = "";
 
             if (weatherData == null) {
@@ -50,22 +51,22 @@ namespace WeatherApp {
             JToken token;
             JArray arr;
 
-            if (!weatherData.TryGetValue("name", out token)) { return null; }
+            if (!weatherData.TryGetValue("name", out token)) { return badData; }
             cityName = token.ToString();
 
             // Set weather description
-            if (!weatherData.TryGetValue("weather", out token)) { return null; } // Get weather value
+            if (!weatherData.TryGetValue("weather", out token)) { return badData; } // Get weather value
             arr = token.ToObject<JArray>(); // Convert to JArray
             weatherDescription = arr.First.Value<string>("description"); // Only contains one object so pull out description from first
             if (weatherDescription == null) { return null; }
             weatherIcon = $"https://openweathermap.org/img/wn/{arr.First["icon"].ToString()}@2x.png";
 
             // Get tempurature
-            if (!weatherData.TryGetValue("main", out token)) { return null; }
+            if (!weatherData.TryGetValue("main", out token)) { return badData; }
             tempCelcius = String.Format("{0:0.0}", ((double)token["temp"] - 273.15)); // Convert to celcius from kelvin
             humidity = token["humidity"].ToString();
 
-            if (!weatherData.TryGetValue("wind", out token)) { return null; }
+            if (!weatherData.TryGetValue("wind", out token)) { return badData; }
             windSpeed = token["speed"].ToString(); // meters per second
 
             card += "" +
@@ -108,9 +109,46 @@ namespace WeatherApp {
          *                null                  : If any issue is encountered
          */
         public static string Create5DayWeatherCard(JObject weatherData) {
-            string formattedData = null;
+            string formattedData = "";
 
+            string windIcon = "images/wind.png";
+            string humidityIcon = "images/humidity.png";
 
+            JArray weatherArr = (JArray)weatherData["list"];
+            DateTime date = DateTime.Today;
+            formattedData += "<div class=fiveday_day>";
+            foreach (JObject weather in weatherArr) {
+                if (date.Date != DateTime.Parse((string)weather.SelectToken("$.dt_txt")).Date) {
+                    formattedData += "</div><div class=fiveday_day>";
+                    date = DateTime.Parse((string)weather.SelectToken("$.dt_txt"));
+                }
+
+                formattedData += "" +
+                "<div class=\"weather_card\">" +
+                   $"<h2 class=\"weather_card_location\">{(string)weatherData.SelectToken("$.city.name")}</h2>" +
+                   $"<p class=\"weather_card_description\">{(string)weather.SelectToken("$.dt_txt")}, {(string)weather.SelectToken("$.weather[0].description")}</p>" +
+                    "" +
+                    "<div class=\"weather_card_temperature\">" +
+                       $"<h1>{String.Format("{0:0.0}", ((double)weather.SelectToken("$.main.temp") - 273.15))}<sup>&deg;C</sup></h1>" +
+                       $"<img src = \"{$"https://openweathermap.org/img/wn/{(string)weather.SelectToken("$.weather[0].icon")}@2x.png"}\" />" +
+                    "</div>" +
+                    "" +
+                    "<div class=\"weather_card_extras\">" +
+                        "<div class=\"weather_card_precipitation\">" +
+                           $"<img src = \"{humidityIcon}\" />" +
+                           $"<p> {(string)weather.SelectToken("$.main.humidity")}%</p>" +
+                           "<p>Humidity</p>" +
+                        "</div>" +
+                        "" +
+                        "<div class=\"weather_card_wind\">" +
+                           $"<img src = \"{windIcon}\" />" +
+                           $"<p> {(string)weather.SelectToken("$.wind.speed")} m/s</p>" +
+                           "<p>Wind Speed</p>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+            }
+            formattedData += "</div>";
 
             return formattedData;
         }

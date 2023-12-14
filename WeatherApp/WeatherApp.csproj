@@ -68,15 +68,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="5DayWeather.aspx" />
     <Content Include="hourlyWeather.aspx" />
     <Content Include="images\humidity.png" />
     <Content Include="images\wind.png" />
     <Content Include="index.aspx" />
     <Content Include="scripts\script.js" />
+    <Content Include="styles\5Day.css" />
     <Content Include="styles\style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5DayWeather.aspx.cs">
+      <DependentUpon>5DayWeather.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="5DayWeather.aspx.designer.cs">
+      <DependentUpon>5DayWeather.aspx</DependentUpon>
+    </Compile>
     <Compile Include="hourlyWeather.aspx.cs">
       <DependentUpon>hourlyWeather.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -16,13 +16,12 @@
             <div id="navigation_bar">
                 <a href="index.aspx">Home</a>
                 <a href="hourlyWeather.aspx">Current</a>
+                <a href="5DayWeather.aspx">5 Day</a>
                 <a href="#">OTHER</a>
-                <div class="searchbox">
-                    <input class="textbox" id="city" name="city" placeholder="Enter a location" type="text"/>
-
-                </div>
+                <input id="location" placeholder="Enter a location" type="text" runat="server"/>
             </div>
         </header>
+
         <div class="main-container">
             <div class="left-container">
                 <h2>Do you consent to sharing your location?</h2>

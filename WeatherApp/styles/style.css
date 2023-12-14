@@ -13,16 +13,24 @@ html, body {
 
 body {
     background-color: mediumaquamarine;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     background-color: cadetblue;
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     border-bottom: 3px solid var(--colour_2);
     color: brown;
+    z-index: 100;
 }
 
 #title {
@@ -126,9 +134,9 @@ input:checked + .slider:before {
     border-radius: 34px;
 }
 
-    .slider.round:before {
-        border-radius: 50%;
-    }
+.slider.round:before {
+    border-radius: 50%;
+}
 
 /* Weather details styling */
 .weather-details {
@@ -180,13 +188,13 @@ input:checked + .slider:before {
     transition: box-shadow 0.5s ease-in-out;
 }
 
-    .weather_card:hover {
-        box-shadow: 0px 10px 20px 1px var(--colour_1);
-    }
+.weather_card:hover {
+    box-shadow: 0px 10px 20px 1px var(--colour_1);
+}
 
-    .weather_card sup {
-        font-size: 30px;
-    }
+.weather_card sup {
+    font-size: 30px;
+}
 
 .weather_card_location, .weather_card_description {
     align-self: center;
@@ -207,10 +215,10 @@ input:checked + .slider:before {
     align-items: center;
 }
 
-    .weather_card_temperature h1 {
-        font-size: 70px;
-        font-weight: 300;
-    }
+.weather_card_temperature h1 {
+    font-size: 70px;
+    font-weight: 300;
+}
 
 .weather_card_extras {
     display: flex;
@@ -219,39 +227,23 @@ input:checked + .slider:before {
     align-items: center;
 }
 
-    .weather_card_extras div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.weather_card_extras div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .weather_card_precipitation, .weather_card_wind {
     max-width: 100px;
 }
 
-    .weather_card_precipitation p, .weather_card_wind p {
-        font-size: smaller;
-    }
-
-    .weather_card_precipitation img, .weather_card_wind img {
-        object-fit: fill;
-        max-width: 80px;
-        max-height: 80px;
-    }
-
-
-
-    /*test commit*/
-/* Delete me later */
-.weather_card {
-evans_new_branch
-    margin: 300px 0px 0px 50px;
+.weather_card_precipitation p, .weather_card_wind p {
+    font-size: smaller;
 }
 
-.weather_card_collection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+.weather_card_precipitation img, .weather_card_wind img {
+    object-fit: fill;
+    max-width: 80px;
+    max-height: 80px;
 }

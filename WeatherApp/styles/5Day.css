@@ -1,0 +1,15 @@
+﻿main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.fiveday_day {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: lime;
+    overflow: auto;
+}

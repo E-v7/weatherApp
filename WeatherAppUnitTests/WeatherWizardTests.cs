@@ -119,5 +119,12 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
+
+        [TestMethod]
+        public void Get5DayWeatherToJObject_WithOneArgGood() {
+            var data = WeatherWizard.Get5DayWeatherToJObject("Waterloo");
+
+            Assert.IsNotNull(data);
+        }
     }
 }
