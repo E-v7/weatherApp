@@ -1,0 +1,39 @@
+﻿header {
+    background-color: cadetblue;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 3px solid var(--colour_2);
+    color: brown;
+}
+
+#title {
+    text-align: center;
+    padding: 3px 0px;
+    margin: 0;
+}
+
+#navigation_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: larger;
+    margin-bottom: 2px;
+}
+
+    #navigation_bar a {
+        color: firebrick;
+        background-image: linear-gradient(90deg, palevioletred, var(--colour_3));
+        background-size: 0% 1.5px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        text-decoration: none;
+        transition: background-size 0.1s ease-in-out, color 0.1s ease-in-out;
+    }
+
+
+        #navigation_bar a:hover {
+            background-size: 100% 1.5px;
+            color: palevioletred;
+        }
