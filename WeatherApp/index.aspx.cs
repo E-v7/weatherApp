@@ -51,24 +51,30 @@ namespace WeatherApp
          */
         protected void Login_Click(object sender, EventArgs e)
         {
+            // retrieve the user input from the text boxes
             string username = userName.Text.Trim();
             string password = passWord.Text;
 
-            if (accountService.VerifyLogin(username, password))
+            // use the AccountServicing instance to verify the login
+            bool isValidUser = accountService.VerifyLogin(username, password);
+
+            if (isValidUser)
             {
-                // Store username in session for later use
+                // store the username in a session variable for later use
                 Session["Username"] = username;
 
-                // Set greeting text and make it visible
+                // get the username and greet them 
                 Greeting.Text = $"Hi {username}! Do you want to search a forecast today?";
                 Greeting.Visible = true;
 
-                // Hide the login UI
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideLogin", "hideLoginUI();", true);
+                // hide the login UI calls 'hideLoginUI' in script.js
+                // this will update the display style of the loginContainer to 'none'
+                ScriptManager.RegisterStartupScript(this, GetType(), "HideLoginScript", "hideLoginUI();", true);
+
             }
             else
             {
-                // Logic for failed login
+                // maybe exception 
             }
         }
 
@@ -84,7 +90,6 @@ namespace WeatherApp
          * RETURNS       : NONE
          * 
          */
-
         protected void Register_Click(object sender, EventArgs e)
         {
 
