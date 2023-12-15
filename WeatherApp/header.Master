@@ -9,6 +9,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form id="mainForm" runat="server">
     <header>
         <h1 id="title">The Weather App</h1>
         <div id="navigation_bar">
@@ -21,5 +22,17 @@
             </div>
         </div>
     </header>
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <asp:ContentPlaceHolder ID="PageButton" runat="server">
+    </asp:ContentPlaceHolder>
+        </form>
+    <footer>
+        <p>Web Based Weather App</p>
+        <p>Software Quality</p>
+        <p>Project Team 3</p>
+    </footer>
 </body>
 </html>
