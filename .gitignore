@@ -5,3 +5,4 @@ bin/
 WeatherApp/Properties
 Settings.settings
 Settings.Designer.cs
+Web.config

@@ -155,28 +155,81 @@ namespace WeatherApp {
             return formattedData;
         }
 
+        /*
+         * Method       : Create5DayWeatherTable()
+         * 
+         * Description  : Creates a table that can be displayed on the website with weather
+         *                  information across 5 days for every 3 hours
+         * 
+         * Parameters   : JObject weatherData - The json object that holds all the data for the 5 days
+         * 
+         * Returns      : string table - the formatted table that is ready to be displayed on the webpage
+         */
         public static string Create5DayWeatherTable(JObject weatherData) {
             string table = "";
+            int hour = 0;
 
             // Prepare table
             table += "<table>" +
+                $"<caption>{weatherData["city"]["name"].ToString()}</caption>" +
                 "<tr>" +
-                "<th></th>"; // Table header empty for time stamps
+                "<th>Hour/Day</th>";
             // Set time stamp rows
             for (int i = 0; i <= 21; i += 3) {
                 table += $"<td>{i}:00:00</td>";
+                //table += $"<tr>{i}:00:00</tr>";
             }
             table += "</tr>"; // Stop preparation
 
+
+            string prevDay = null;
             // Insert data from weatherData
+            table += "<tr>"; // Start first table row
             foreach (JObject weather in (JArray)weatherData["list"]) {
-                table += "<tr>";
+                string temp = String.Format("{0:0.0}", ((double)weather.SelectToken("$.main.temp") - 273.15));
+                string desc = (string)weather.SelectToken("$.weather[0].description");
+                string wind = (string)weather.SelectToken("$.wind.speed");
+                string humidity = (string)weather.SelectToken("$.main.humidity");
 
+                string dt = (string)weather.SelectToken("$.dt_txt");
 
+                if (prevDay == null) {
+                    table += $"<th>{DateTime.Parse(dt).ToShortDateString()}</th>";
+                }
 
-                table += "</tr>";
+                // End and start table row for new table
+                if (prevDay != null && DateTime.Parse(prevDay).Day != DateTime.Parse(dt).Day) {
+                    table += $"</tr><tr><th>{DateTime.Parse(dt).ToShortDateString()}</th>";
+
+                    hour = 0;
+                }
+
+                // Add filler if needed
+                for (; DateTime.Parse(dt).Hour > DateTime.Parse($"2001-04-29 {hour}:00:00").Hour; hour += 3) {
+                    table += "<td>Data not available</td>";
+                }
+
+                // Write data to table
+                table += $"<td>" +
+                        $"<p>Temp: {temp}<sup>&deg;C</sup></p>" +
+                        $"<p>Description: {desc}</p>" +
+                        $"<p>Wind Speed: {wind} m/s</p>" +
+                        $"<p>Humidity: {humidity}%</p>" +
+                        $"</td>";
+
+                hour += 3; // Now that data has been written increment the hour for the next days comparison
+
+                prevDay = dt;
             }
 
+            // If data ends before the final hour display data not available message
+            if (DateTime.Parse(prevDay).Hour < 21) {
+                for(int i = DateTime.Parse(prevDay).Hour; i < 21; i += 3) {
+                    table += "<td>Data not available</td>";
+                }
+            }
+
+            table += "</tr>";
             table += "</table>";
 
             return table;
