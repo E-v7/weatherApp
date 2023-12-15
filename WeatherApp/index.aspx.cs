@@ -135,17 +135,38 @@ namespace WeatherApp
         {
             string searchQuery = Search.Text.Trim();
 
-            JObject weatherData = WeatherWizard.RequestCurrentWeatherAPI(searchQuery);
+            // splitting user's search by comma if they enter all three parameters 
+            string[] searchParts = searchQuery.Split(',');
+            JObject weatherData = null;
+
+            // determines the number of parts and call the appropriate WeatherWizard method
+            if (searchParts.Length == 1)
+            {
+                // city name only
+                weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim());
+            }
+            else if (searchParts.Length == 2)
+            {
+                // city and country code
+                weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim(), searchParts[1].Trim());
+            }
+            else if (searchParts.Length == 3)
+            {
+                // city, state code, and country code
+                weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim(), searchParts[2].Trim(), searchParts[1].Trim());
+            }
+
             if (weatherData != null)
             {
-                WeatherInfo.Text = weatherData.ToString();
+                WeatherInfo.Text = weatherData.ToString(Formatting.None);
                 WeatherInfo.Visible = true;
             }
             else
             {
-                WeatherInfo.Text = "Weather forecast not available.";
+                WeatherInfo.Text = "Weather information could not be retrieved.";
                 WeatherInfo.Visible = true;
             }
         }
+
     }
 }
