@@ -59,7 +59,7 @@ function fetchWeatherDetailsFromServer(lat, lon, cityName = null) {
         },
         error: function (error) {
             console.error('Error:', error);
-            alert("Location-Specific Forecast was not Retrievable");
+            alert("Location-Specific Forecast was not Retrieved");
         }
     });
 }
@@ -177,7 +177,7 @@ function hideLoginUI() {
 */
 function performSearch() {
     var searchQuery = document.getElementById('location').value;
-    if (searchQuery.trim() === "") {
+    if (searchQuery.trim() == "") {
         alert("Please enter a location to search.");
         return;
     }
