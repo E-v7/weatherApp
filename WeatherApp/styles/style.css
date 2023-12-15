@@ -5,6 +5,7 @@
     --colour_4: #3F1D38;
 }
 
+<<<<<<< HEAD
 html, body {
     margin: 0;
     padding: 0;
@@ -63,6 +64,8 @@ header {
             color: palevioletred;
         }
 
+=======
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
 
 /* index or homepage floating containers and ui styling */
 
@@ -154,12 +157,12 @@ input:checked + .slider:before {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #4CAF50; 
+    background-color: #5f9fc0; 
 }
 
 /* Left and right container styling */
-.left-container, .right-container {
-    background-color: #ffffe0; /* Light yellow background */
+.left-container{
+    background-color: #E3DAF7;
     width: 50%;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -167,6 +170,86 @@ input:checked + .slider:before {
     margin: 10px;
 }
 
+.right-container {
+    background-color: #E3DAF7;
+    width: 50%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Login container styling */
+.login-container {
+    width: 80%; /* Adjust width as necessary */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+.login-button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .login-button:hover {
+        background-color: #005f6b;
+    }
+
+.link-style {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: underline;
+    color: #008CBA;
+    cursor: pointer;
+}
+
+    .link-style:hover {
+        color: #005f6b;
+    }
+
+
+.registration-container {
+    width: 80%; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px; 
+}
+
+.register-button {
+    display: none; /* hidden until user clicks to register */
+    background-color: #008CBA;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 
 /* weather card css styling*/
@@ -178,7 +261,7 @@ input:checked + .slider:before {
 }
 
 .weather_card {
-    //border: 3px solid;
+    border: 3px solid;
     border-radius: 10px;
     box-shadow: 0px 10px 15px 1px black;
     display: inline-flex;
@@ -238,8 +321,28 @@ input:checked + .slider:before {
     max-width: 100px;
 }
 
+<<<<<<< HEAD
 .weather_card_precipitation p, .weather_card_wind p {
     font-size: smaller;
+=======
+    .weather_card_precipitation p, .weather_card_wind p {
+        font-size: smaller;
+    }
+
+    .weather_card_precipitation img, .weather_card_wind img {
+        object-fit: fill;
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+
+
+    /*test commit*/
+/* Delete me later */
+.weather_card {
+evans_new_branch;
+    margin: 300px 0px 0px 50px;
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
 }
 
 .weather_card_precipitation img, .weather_card_wind img {

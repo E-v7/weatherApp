@@ -1,13 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="hourlyWeather.aspx.cs" Inherits="WeatherApp.hourlyWeather" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Header.master" CodeBehind="hourlyWeather.aspx.cs" Inherits="WeatherApp.hourlyWeather" %>
 
-<!DOCTYPE html>
+<asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
+    
+</asp:Content>
 
+<asp:Content ID="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <link href="styles/style.css" rel="stylesheet" />
-</head>
 <body>
+<<<<<<< HEAD
     <form id="form1" runat="server">
         <header>
             <h1 id="title">The Weather App</h1>
@@ -20,5 +20,15 @@
 
         <div id="testing" runat="server"></div>
     </form>
+=======
+
+        <div>
+            <p>This is the hourly page for the webapp</p>
+        </div>
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
 </body>
 </html>
+</asp:Content>
+<asp:Content ID="search" ContentPlaceHolderID="PageButton" runat="server">
+    <asp:Button ID="city" runat="server" Text="Go" />
+</asp:Content>
