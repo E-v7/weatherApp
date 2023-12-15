@@ -160,8 +160,13 @@ function hideLoginUI() {
     if (loginContainer) {
         loginContainer.style.display = 'none';
     }
-
+    // If you have a separate element for the greeting message, show it here
+    var greetingMessage = document.getElementById('Greeting');
+    if (greetingMessage) {
+        greetingMessage.style.display = 'block';
+    }
 }
+
 
 /*
 * FUNCTION      : performSearch() 
