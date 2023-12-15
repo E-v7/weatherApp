@@ -30,6 +30,19 @@ namespace WeatherApp
         public int userID { get; set; }
     }
 
+    public class UserHistory
+    {
+        public string HistoryStateCode { get; set; }
+        public string HistoryCountry { get; set; }
+        public DateTime SearchTime { get; set; }
+    }
+
+    public class SavedLocation
+    {
+        public string savedStateCode { get; set; }
+        public string savedCountry { get; set; }
+    }
+
 
     public class AccountServicing
     {
@@ -224,6 +237,44 @@ namespace WeatherApp
                 connection.Execute($"INSERT INTO `userHistory` (`historyStateCode`, `historyCountry`, `searchTime`, `userID`) VALUES ('{city}', '{country}', '{formatedTime}', {userID});");
                 return true;
             }
+        }
+
+        public List<UserHistory> GetHistoryLocations(int userID)
+        {
+            int highestID = returnHighestID();
+            if (highestID < userID || userID < 0)
+            {
+                throw new Exception("userID out of bounds");
+            }
+
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
+            {
+                //connect to the db
+                connection.Open();
+                List<UserHistory> history = connection.Query<UserHistory>($"SELECT * FROM userHistory WHERE userID = {userID}").ToList();
+
+                return history;
+            }
+
+        }
+
+        public List<SavedLocation> GetSavedLocations(int userID)
+        {
+            int highestID = returnHighestID();
+            if (highestID < userID || userID < 0)
+            {
+                throw new Exception("userID out of bounds");
+            }
+
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
+            {
+                //connect to the db
+                connection.Open();
+                List<SavedLocation> savedLoactions = connection.Query<SavedLocation>($"SELECT * FROM userSavedLocation WHERE userID = {userID}").ToList();
+
+                return savedLoactions;
+            }
+
         }
 
         /*

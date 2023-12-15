@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -138,6 +139,23 @@ namespace WeatherAppUnitTests
             var accountServicing = new AccountServicing(connectionString);
             bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", 99999999);
             Assert.IsFalse(locationAdded, "the location should not be added");
+        }
+
+        [TestMethod()]
+        public void VerifyGetHistoryLocations()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            List<UserHistory> historyFound = accountServicing.GetHistoryLocations(201);
+            Assert.IsNotNull(historyFound, "there should be a history");
+        }
+
+
+        [TestMethod()]
+        public void VerifyGetSavedLocations()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            List<SavedLocation> historyFound = accountServicing.GetSavedLocations(201);
+            Assert.IsNotNull(historyFound, "there should be saved locations");
         }
 
     }
