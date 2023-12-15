@@ -120,3 +120,7 @@ C:\weatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
 C:\weatherApp\WeatherApp\bin\Web.config
 C:\weatherApp\WeatherApp\bin\Web.Debug.config
 C:\weatherApp\WeatherApp\bin\Web.Release.config
+C:\Users\shivm\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.dll
+C:\Users\shivm\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\shivm\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.AssemblyReference.cache
+C:\Users\shivm\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
