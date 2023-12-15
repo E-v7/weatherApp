@@ -11,6 +11,7 @@ using System.Transactions;
 using Dapper;
 using MySql.Data.MySqlClient;
 using WeatherApp;
+using WeatherApp.Properties;
 
 namespace WeatherApp
 {
@@ -38,6 +39,7 @@ namespace WeatherApp
         // Strong password regex pattern
         private readonly Regex passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{12,}$");
 
+        private static Settings settings = new Settings();
 
         private DateTime currentDateTime = DateTime.Now;
 
@@ -254,9 +256,11 @@ namespace WeatherApp
         private static string getConnectionString()
         {
             //this is the connection string it has to be private but for now hardcoded
-            string connectionString = "Server=localhost;Database=weatherappuserdata;Uid=Thomas;Pwd=1234.weather;";
+            string connectionString = settings.ConnectionString;
 
             return connectionString;
         }
     }
+
+
 }

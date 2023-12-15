@@ -3,16 +3,19 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Runtime;
 using WeatherApp;
 using WeatherApp.Properties;
+using WeatherAppUnitTests.Properties;
 
 namespace WeatherAppUnitTests
 {
     [TestClass()]
     public class AccountServicingTests
     {
+        private static Settings settings = new Settings();
 
-        string connectionString = "Server=localhost;Database=weatherappuserdata;Uid=Thomas;Pwd=1234.weather;";
+        string connectionString = settings.ConnectionString;
 
         [TestMethod()]
         public void VerifyExistingUserName()
