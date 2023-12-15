@@ -118,7 +118,6 @@ function toggleRegistrationForm() {
     }
 }
 
-
 /*
  * FUNCTION      :
  *
@@ -128,11 +127,11 @@ function toggleRegistrationForm() {
  * 
  * RETURNS       :
  * 
- */ 
+ */
 function hideLoginUI() {
     var loginContainer = document.getElementById('loginContainer');
     if (loginContainer) {
         loginContainer.style.display = 'none';
     }
-   
+
 }
