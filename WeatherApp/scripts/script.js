@@ -12,16 +12,16 @@ $(document).ready(function () {
 
 
 /*
- * FUNCTION      :
+ * FUNCTION      :function getLocationAndWeather()
  *
- * DESCRIPTION   :
+ * DESCRIPTION   :This function uses HTML geolocation api built into webforms if HTTPS is selected
+ *                initially 
  * 
- * PARAMETERS    :
+ * PARAMETERS    :NONE 
  * 
- * RETURNS       :
+ * RETURNS       :NONE
  * 
  */ 
-
 function getLocationAndWeather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -35,32 +35,47 @@ function getLocationAndWeather() {
 }
 
 /*
- * FUNCTION      :
+ * FUNCTION      : fetchWeatherDetailsFromServer(lat, lon, cityName)
  *
- * DESCRIPTION   :
+ * DESCRIPTION   : Function makes an AJAX POST request to the web method 'GetWeather' in index.aspx
+ *                 Take lat or long or city name as parameters and then calls display weather  
+ *                 to only change the weather details being displayed in the UI. 
+ *   
+ * PARAMETERS    : lat - the latitude, lon - the longitude, cityName - city name 
  * 
- * PARAMETERS    :
- * 
- * RETURNS       :
- * 
- */ 
-function fetchWeatherDetailsFromServer(lat, lon) {
+ * RETURNS       : None
+ */
+function fetchWeatherDetailsFromServer(lat, lon, cityName = null) {
+    var data = cityName ? { cityName: cityName } : { lat: lat, lon: lon };
+
     $.ajax({
         type: "POST",
-        url: "index.aspx/GetWeather",
-        data: JSON.stringify({ lat: lat, lon: lon }),
+        url: "index.aspx/GetWeather", 
+        data: JSON.stringify(data),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            displayWeather(response.d); // '.d' accesses the actual result in the response object from ASP.NET
+            displayWeather(response.d); 
         },
         error: function (error) {
             console.error('Error:', error);
+            alert("Location-Specific Forecast was not Retrieved");
         }
     });
 }
 
 
+/*
+ * FUNCTION      : displayWeather(weatherData)
+ *
+ * DESCRIPTION   : This function processes the weather data received from the server.
+ *                 It formats the data into HTML and displays it on the webpage.
+ * 
+ * PARAMETERS    : weatherData - the JSON string containing weather information taken from 
+ *                 WeatherWizard class method 
+ * 
+ * RETURNS       : NONE
+ */
 function displayWeather(weatherData) {
     // Parse the JSON data
     var weather = JSON.parse(weatherData);
@@ -79,6 +94,16 @@ function displayWeather(weatherData) {
     weatherDetailsDiv.innerHTML = content;
 }
 
+/*
+ * FUNCTION      : showError(error)
+ *
+ * DESCRIPTION   : This function displays an appropriate alert message based on the 
+ *                 error code received from the geolocation API.
+ * 
+ * PARAMETERS    : error - the error object from the geolocation API
+ * 
+ * RETURNS       : NONE
+ */
 function showError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
@@ -97,13 +122,14 @@ function showError(error) {
 }
 
 /*
- * FUNCTION      :
+ * FUNCTION      : toggleRegistrationForm()
  *
- * DESCRIPTION   :
+ * DESCRIPTION   : Function toggles the visibility of the registration container
+ *                 login form. The registration container and then hides the login part. 
  * 
- * PARAMETERS    :
- * 
- * RETURNS       :
+ * PARAMETERS    : NONE 
+ *  
+ * RETURNS       : NONE 
  * 
  */ 
 function toggleRegistrationForm() {
@@ -117,3 +143,47 @@ function toggleRegistrationForm() {
         loginContainer.style.display = 'block'; // Show the login form
     }
 }
+
+/*
+ * FUNCTION      : hideLoginUI()
+ *
+ * DESCRIPTION   : Function hides login only once Login_Click verifies user credentials 
+ *                 against the database and the user successfully logs in. 
+ * 
+ * PARAMETERS    : NONE
+ * 
+ * RETURNS       : NONE
+ * 
+ */
+function hideLoginUI() {
+    var loginContainer = document.getElementById('loginContainer');
+    if (loginContainer) {
+        loginContainer.style.display = 'none';
+    }
+
+}
+
+/*
+* FUNCTION      : performSearch() 
+*
+* DESCRIPTION   : Function performs a search when the user inputs in the search bar 
+                  this function validates the search performed and calls the above 
+                  function fetchWeatherDetailsFromServer to fetch weather details.
+* 
+* PARAMETERS    : NONE
+* 
+* RETURNS       : NONE
+* 
+*/
+function performSearch() {
+    var searchQuery = document.getElementById('location').value;
+    if (searchQuery.trim() == "") {
+        alert("Please enter a location to search.");
+        return;
+    }
+    fetchWeatherDetailsFromServer(null, null, searchQuery);
+}
+
+$(document).on('click', '#Search', function () {
+    performSearch();
+});
