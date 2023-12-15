@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="header.Master.cs" Inherits="WeatherApp.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <header>
+        <h1 id="title">The Weather App</h1>
+        <div id="navigation_bar">
+            <a href="index.aspx">Home</a>
+            <a href="hourlyWeather.aspx">Hourly Weather</a>
+            <a href="weatherMap.aspx">Weather Map</a>
+            <div class="searchbox">
+                <input class="textbox" id="city" name="city" type="text"/>
+
+            </div>
+        </div>
+    </header>
+</body>
+</html>
