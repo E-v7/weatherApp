@@ -44,7 +44,7 @@ namespace WeatherApp {
 
             // Call AccountServicing methods for validation (to be implemented)
             // This will eventually check if the user exists in the database and validate the password
-            bool isValidUser = accountService.ValidateLogin(username, password);
+            bool isValidUser = accountService.VerifyLogin(username, password);
 
             if (isValidUser)
             {

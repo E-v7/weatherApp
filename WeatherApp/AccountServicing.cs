@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Transactions;
 using Dapper;
 using MySql.Data.MySqlClient;
 using WeatherApp;
@@ -14,13 +15,23 @@ namespace WeatherApp
 {
     public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int userID {  get; set; }
         public string Username { get; set; }
-        public string PasswordHash { get; set; }
         public string Email { get; set; }
         // Additional properties can be added here as needed
     }
+
+    public class Password
+    {
+        public string password { get; set; }
+
+        public int userID { get; set; }
+    }
+
+
+
+
+
     public class AccountServicing
     {
         private readonly List<User> users = new List<User>(); // Simulated database
@@ -34,7 +45,7 @@ namespace WeatherApp
             this.connectionString = connectionString;
         }
 
-        public bool CreateAccount(string firstName, string lastName, string username, string password, string email)
+        public bool CreateAccount(string username, string password, string email)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
             {
@@ -44,30 +55,27 @@ namespace WeatherApp
             {
                 throw new ArgumentException("Password does not meet security requirements.");
             }
-            if (users.Any(u => u.Username == username || u.Email == email))
+            if (VerifyLogin(username, password) == true)
             {
                 throw new ArgumentException("An account with this username or email already exists.");
             }
-            var newUser = new User
+
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
             {
-                FirstName = firstName,
-                LastName = lastName,
-                Username = username,
-                Email = email,
-                PasswordHash = HashPassword(password)
-            };
-            users.Add(newUser);
-            return true;
-        }
-        public bool ValidateLogin(string usernameOrEmail, string password)
-        {
-            var user = users.FirstOrDefault(u => u.Username == usernameOrEmail || u.Email == usernameOrEmail);
-            if (user == null)
-            {
-                return false; // User not found
+                connection.Open();
+                string hashOfEnteredPassword = HashPassword(password);
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    connection.Execute("INSERT INTO `userInfo` (`userName`, `userEmail`) VALUES (@Username, @Email)", new { Username = username, Email = email });
+
+                    int userID = connection.QuerySingle<int>("SELECT LAST_INSERT_ID()");
+
+                    connection.Execute("INSERT INTO `userPassword` (`userPassword`, `userID`) VALUES (@UserPassword, @UserID)", new { UserPassword = hashOfEnteredPassword, UserID = userID });
+                    transaction.Commit();
+                    return true;
+                }
             }
-            // Check if the hashed password matches
-            return VerifyPassword(password, user.PasswordHash);
         }
         private string HashPassword(string password)
         {
@@ -82,7 +90,7 @@ namespace WeatherApp
                 return builder.ToString();
             }
         }
-        public bool VerifyPassword(string userName, string enteredPassword)
+        public bool VerifyLogin(string userName, string enteredPassword)
         {
             using (IDbConnection connection = new MySqlConnection(getConnectionString()))
             {
@@ -117,6 +125,23 @@ namespace WeatherApp
                     }
                 }
             
+        }
+
+        public bool AddSavedLocation(string city, string country, int userID)
+        {
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
+            {
+                
+                connection.Open();
+                List<string> stateCode = connection.Query<string>("SELECT savedStateCode FROM `userSavedLocation` WHERE `savedStateCode` = @SavedStateCode AND `savedCountry` = @SavedCountry AND `userID` = @UserID", new { SavedStateCode = city, SavedCountry = country, UserID = userID }).ToList();
+
+                if(stateCode.Count > 0)
+                {
+                    return false;
+                }
+
+                connection.Execute("INSERT INTO `userSavedLocation` (`savedStateCode`, `savedCountry`, `userID`) VALUES (@SavedStateCode, @SavedCountry, @UserID)", new { SavedStateCode = city, SavedCountry = country, UserID = userID });
+            }
         }
 
 

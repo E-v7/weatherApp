@@ -24,16 +24,16 @@ namespace WeatherAppUnitTests
         public void VerifyNonExistingUserName()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool userExists = accountServicing.verifyuserName("ThisIsNotValid");
-            Assert.IsFalse(userExists, "The user should not exist");
+            bool userNotExists = accountServicing.verifyuserName("ThisIsNotValid");
+            Assert.IsFalse(userNotExists, "The user should not exist");
         }
 
         [TestMethod()]
         public void VerifyExistingPassword()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool userExists = accountServicing.VerifyPassword("Thomas.Audet", "1234Thomas");
-            Assert.IsTrue(userExists, "the Password should exist");
+            bool PasswordExists = accountServicing.VerifyLogin("Thomas.Audet", "1234Thomas");
+            Assert.IsTrue(PasswordExists, "the Password should exist");
         }
 
         [TestMethod()]
@@ -41,24 +41,35 @@ namespace WeatherAppUnitTests
         {
 
             var accountServicing = new AccountServicing(connectionString);
-            bool userExists = accountServicing.VerifyPassword("ThisIsNotValid", "AlsoNotValid");
-            Assert.IsFalse(userExists, "The password should not exist");
+            bool PasswordNotExists = accountServicing.VerifyLogin("ThisIsNotValid", "AlsoNotValid");
+            Assert.IsFalse(PasswordNotExists, "The password should not exist");
         }
 
         [TestMethod()]
         public void VerifyExistingPasswordAndNonExistingUserName()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool userExists = accountServicing.VerifyPassword("ThisIsNotValid", "1234Thomas");
-            Assert.IsFalse(userExists, "The password should not exist");
+            bool PasswordNotExists = accountServicing.VerifyLogin("ThisIsNotValid", "1234Thomas");
+            Assert.IsFalse(PasswordNotExists, "The password should not exist");
         }
 
         [TestMethod()]
         public void VerifyExistingUserNameAndNonExistingPassword()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool userExists = accountServicing.VerifyPassword("Thomas.Audet", "AlsoNotValid");
-            Assert.IsFalse(userExists, "The password should not exist");
+            bool PasswordNotExists = accountServicing.VerifyLogin("Thomas.Audet", "AlsoNotValid");
+            Assert.IsFalse(PasswordNotExists, "The password should not exist");
         }
+
+
+        [TestMethod()]
+        public void verifyCreatingUserAllCorrectInfo()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas12345$", "taudet@example.com");
+            Assert.IsTrue(AccountCreationValid, "The password should not exist");
+        }
+
+        [TestMethod()]
     }
 }
