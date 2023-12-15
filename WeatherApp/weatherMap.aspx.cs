@@ -25,7 +25,7 @@ namespace WeatherApp
             }
         }
 
-        protected void GetWeather(string lat, string lon)
+      /*  protected string GetWeather(string lat, string lon)
         {
             // call the WeatherWizard class method to get the current weather
             
@@ -39,28 +39,30 @@ namespace WeatherApp
             ClientScript.RegisterStartupScript(this.GetType(), "alert", scriptAlert, true);
             // convert the JObject to a JSON string to send back to the client
             // return weatherData.ToString();
-        }
+        }*/
 
         protected void GoToLocation(object sender, EventArgs e)
         {
             string city = Request.Form["city"];
-            errorText.Text = "";  //clear previous error messages
+              //clear previous error messages
+            double latitude = 47;
+            double longitude = -70;
+            string description = "";
             if (city != "")
             {
                 
                 Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject(city);
                 if (weatherDetails != null) {
-                    double latitude = weatherDetails.coord.lat;
-                    double longitude = weatherDetails.coord.lon;
-                    string description = weatherDetails.weather[0].description;
+                    latitude = weatherDetails.coord.lat;
+                    longitude = weatherDetails.coord.lon;
+                    description = weatherDetails.weather[0].description;
                     string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" + description + "');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
                 }
                 else {
-
                     string script = "alert('Unable to get weather for this location!');";
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-                    string scriptMap = "getLocationAndWeather();";
+                    string scriptMap = "initMap("+latitude+","+longitude+", '" + apiKey + "', '" + description + "');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", scriptMap, true);
                 }
             }
