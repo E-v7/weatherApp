@@ -24,12 +24,19 @@ namespace WeatherApp
         protected global::System.Web.UI.HtmlControls.HtmlForm MainPageForm;
 
         /// <summary>
+<<<<<<< HEAD
+        /// location control.
+=======
         /// userName control.
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< HEAD
+        protected global::System.Web.UI.HtmlControls.HtmlInputText location;
+=======
         protected global::System.Web.UI.WebControls.TextBox userName;
 
         /// <summary>
@@ -112,5 +119,6 @@ namespace WeatherApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button register;
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
     }
 }

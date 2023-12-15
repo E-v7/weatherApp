@@ -9,6 +9,21 @@
 <asp:Content ID="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
+<<<<<<< HEAD
+    <form id="MainPageForm" runat="server">
+        <header>
+            <h1 id="title">The Weather App</h1>
+            <div id="navigation_bar">
+                <a href="index.aspx">Home</a>
+                <a href="hourlyWeather.aspx">Current</a>
+                <a href="5DayWeather.aspx">5 Day</a>
+                <a href="#">OTHER</a>
+                <input id="location" placeholder="Enter a location" type="text" runat="server"/>
+            </div>
+        </header>
+
+=======
+>>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
         <div class="main-container">
             <div class="left-container">
                 <h2>Do you consent to sharing your location?</h2>
