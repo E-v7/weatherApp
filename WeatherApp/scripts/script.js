@@ -1,4 +1,8 @@
 ﻿// jQuery ready function to attach event listeners
+
+// user is not logged in 
+var userIsLoggedIn = false;
+
 $(document).ready(function () {
     $('#consentToggle').change(function () {
         if (this.checked) {
@@ -160,9 +164,9 @@ function hideLoginUI() {
     if (loginContainer) {
         loginContainer.style.display = 'none';
     }
-    // If you have a separate element for the greeting message, show it here
+    
     var greetingMessage = document.getElementById('Greeting');
-    if (greetingMessage) {
+    if (greetingMessage && userIsLoggedIn) {
         greetingMessage.style.display = 'block';
     }
 }
@@ -187,6 +191,11 @@ function performSearch() {
         return;
     }
     fetchWeatherDetailsFromServer(null, null, searchQuery);
+
+    // Check if the user is logged in and hide the login UI if they are.
+    if (userIsLoggedIn) {
+        hideLoginUI();
+    }
 }
 
 $(document).on('click', '#Search', function () {
