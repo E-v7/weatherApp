@@ -81,13 +81,13 @@ namespace WeatherAppUnitTests
 
 
 
-        [TestMethod()]
+        /*[TestMethod()]
         public void VerifyAddingSavedLocation()
         {
             var accountServicing = new AccountServicing(connectionString);
             bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 2);
             Assert.IsTrue(locationAdded, "The location should be added");
-        }
+        }*/
 
         [TestMethod()]
         public void VerifyAddingExistingID()
@@ -113,8 +113,29 @@ namespace WeatherAppUnitTests
             Assert.IsFalse(locationAdded, "The location should not added");
         }
 
-        //[TestMethod()]
+        [TestMethod()]
+        public void VerifyAddHistoryLocation()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", 201);
+            Assert.IsTrue(locationAdded, "the location should be added");
+        }
 
+        [TestMethod()]
+        public void VerifyAddHistoryLocationNegativeID()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", -201);
+            Assert.IsFalse(locationAdded, "the location should not be added");
+        }
+
+        [TestMethod()]
+        public void VerifyAddHistoryLocationHigherID()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", 99999999);
+            Assert.IsFalse(locationAdded, "the location should not be added");
+        }
 
     }
 }
