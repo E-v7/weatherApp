@@ -23,7 +23,8 @@ function getLocationAndWeather(apiKey) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
-            initMap(lat, lon, apiKey, "");
+
+            initMap(lat, lon, apiKey, "YourLocation");
         }, function (error) {
             showError(error, apiKey);
         });

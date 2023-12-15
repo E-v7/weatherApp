@@ -25,17 +25,6 @@ namespace WeatherApp
             }
         }
 
-   /*     public void GetCurrentWeather(string lat, string lon)
-        {
-            // call the WeatherWizard class method to get the current weather
-            Weather weatherDetails = WeatherWizard.GetCurrentWeatherToWeatherObject(lat, lon);
-            double latitude = weatherDetails.coord.lat;
-            double longitude = weatherDetails.coord.lon;
-            string description = weatherDetails.name + ": " + weatherDetails.main.temp + "°K, " + weatherDetails.weather[0].description;
-            string script = "initMap(" + latitude + ", " + longitude + ", '" + apiKey + "', '" + description + "');";
-            ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", script, true);
-        }*/
-
         protected void GoToLocation(object sender, EventArgs e)
         {
             string city = Request.Form["city"];
