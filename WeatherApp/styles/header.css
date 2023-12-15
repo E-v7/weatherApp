@@ -46,3 +46,13 @@ html, body {
 body {
     background-color: mediumaquamarine;
 }
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: cadetblue;
+    padding: 5px;
+    text-align: center;
+    font-size: small;
+}
