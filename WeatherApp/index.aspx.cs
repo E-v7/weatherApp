@@ -23,7 +23,8 @@ namespace WeatherApp {
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountService = new AccountServicing();
+           
+            //accountService = new AccountServicing();
             // additional page load logic if necessary
         }
         [WebMethod]

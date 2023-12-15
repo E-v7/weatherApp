@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Dapper;
 using MySql.Data.MySqlClient;
+using WeatherApp;
 
 namespace WeatherApp
 {
@@ -28,6 +29,11 @@ namespace WeatherApp
         // Strong password regex pattern
         private readonly Regex passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{12,}$");
 
+
+        public AccountServicing(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         public bool CreateAccount(string firstName, string lastName, string username, string password, string email)
         {
@@ -83,19 +89,36 @@ namespace WeatherApp
             return hashOfEnteredPassword == storedHash;
         }
 
-        private bool verifyuserName(string userName)
+        public bool verifyuserName(string userName)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(getConnectionString("WeatherUserDB")))
+            try
             {
-                connection.Query($"select ").ToList();
-                return true;
+                using (IDbConnection connection = new MySqlConnection("Server=localhost;Port=3306;Database=weatherappuserdata;Uid=root;Pwd=1Sully75$27062003;"))
+                {
+                    connection.Open(); // Explicitly open the connection
+                    List<string> userNames = connection.Query<string>($"SELECT userName FROM userInfo WHERE userName = '{userName}'").ToList();
+                    if (userNames.Count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or print the exception details
+                Console.WriteLine($"Exception: {ex.Message}");
+                return false;
             }
         }
 
 
         private static string getConnectionString(string name)
         {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return "Server=localhost,3306;Database=weatherappuserdata;User ID=root;Password=1Sully75$27062003;";
         }
     }
 }
