@@ -5,7 +5,7 @@
     --colour_4: #3F1D38;
 }
 
-<<<<<<< HEAD
+
 html, body {
     margin: 0;
     padding: 0;
@@ -64,8 +64,6 @@ header {
             color: palevioletred;
         }
 
-=======
->>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
 
 /* index or homepage floating containers and ui styling */
 
@@ -251,6 +249,35 @@ label {
     cursor: pointer;
 }
 
+.greeting-message {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e8f4fd; 
+    border: 1px solid #b6d4f2; 
+    border-radius: 5px;
+    color: #035397; 
+    font-size: 18px;
+    text-align: center;
+}
+
+
+.weather-info {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #f2f2f2; 
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    color: #333; 
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+    .weather-info h2 {
+        margin-top: 0;
+        color: #017bf5; 
+    }
+
+
 
 /* weather card css styling*/
 .weather_card * {
@@ -321,7 +348,7 @@ label {
     max-width: 100px;
 }
 
-<<<<<<< HEAD
+
 .weather_card_precipitation p, .weather_card_wind p {
     font-size: smaller;
 =======
