@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -23,7 +24,7 @@ namespace WeatherApp {
             string card = "";
 
             if (weatherData == null) {
-                return null;
+                return badData;
             }
 
             // Stored in object
@@ -58,7 +59,7 @@ namespace WeatherApp {
             if (!weatherData.TryGetValue("weather", out token)) { return badData; } // Get weather value
             arr = token.ToObject<JArray>(); // Convert to JArray
             weatherDescription = arr.First.Value<string>("description"); // Only contains one object so pull out description from first
-            if (weatherDescription == null) { return null; }
+            if (weatherDescription == null) { return badData; }
             weatherIcon = $"https://openweathermap.org/img/wn/{arr.First["icon"].ToString()}@2x.png";
 
             // Get tempurature
@@ -126,7 +127,8 @@ namespace WeatherApp {
                 formattedData += "" +
                 "<div class=\"weather_card\">" +
                    $"<h2 class=\"weather_card_location\">{(string)weatherData.SelectToken("$.city.name")}</h2>" +
-                   $"<p class=\"weather_card_description\">{(string)weather.SelectToken("$.dt_txt")}, {(string)weather.SelectToken("$.weather[0].description")}</p>" +
+                   $"<p class=\"weather_card_description\">{(string)weather.SelectToken("$.dt_txt")}</p>" +
+                   $"<p class=weather_card_description>{(string)weather.SelectToken("$.weather[0].description")}</p>" +
                     "" +
                     "<div class=\"weather_card_temperature\">" +
                        $"<h1>{String.Format("{0:0.0}", ((double)weather.SelectToken("$.main.temp") - 273.15))}<sup>&deg;C</sup></h1>" +
@@ -151,6 +153,33 @@ namespace WeatherApp {
             formattedData += "</div>";
 
             return formattedData;
+        }
+
+        public static string Create5DayWeatherTable(JObject weatherData) {
+            string table = "";
+
+            // Prepare table
+            table += "<table>" +
+                "<tr>" +
+                "<th></th>"; // Table header empty for time stamps
+            // Set time stamp rows
+            for (int i = 0; i <= 21; i += 3) {
+                table += $"<td>{i}:00:00</td>";
+            }
+            table += "</tr>"; // Stop preparation
+
+            // Insert data from weatherData
+            foreach (JObject weather in (JArray)weatherData["list"]) {
+                table += "<tr>";
+
+
+
+                table += "</tr>";
+            }
+
+            table += "</table>";
+
+            return table;
         }
     }
 }

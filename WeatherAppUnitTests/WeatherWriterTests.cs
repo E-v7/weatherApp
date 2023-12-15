@@ -21,7 +21,7 @@ namespace WeatherApp.Tests {
             JObject jObj = new JObject();
             var data = WeatherWriter.CreateCurrentWeatherCard(jObj);
 
-            Assert.IsNull(data);
+            Assert.AreEqual("Something went wrong and the data provided couldn't be used", data);
         }
     }
 }
