@@ -16,14 +16,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WeatherApp.Properties;
 
-namespace WeatherApp {
+namespace WeatherApp
+{
     public partial class index : System.Web.UI.Page
     {
-        protected AccountServicing accountService;
+        //protected AccountServicing accountService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
             //accountService = new AccountServicing();
             // additional page load logic if necessary
         }
@@ -44,7 +44,12 @@ namespace WeatherApp {
 
             // Call AccountServicing methods for validation (to be implemented)
             // This will eventually check if the user exists in the database and validate the password
+
             bool isValidUser = accountService.VerifyLogin(username, password);
+
+            //bool isValidUser = accountService.ValidateLogin(username, password);
+            bool isValidUser = false;
+
 
             if (isValidUser)
             {
@@ -71,7 +76,7 @@ namespace WeatherApp {
 
             if (password == confirmPw)
             {
-                
+
             }
         }
     }
