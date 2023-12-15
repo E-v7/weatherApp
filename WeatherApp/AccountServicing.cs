@@ -29,7 +29,6 @@ namespace WeatherApp
         // Strong password regex pattern
         private readonly Regex passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{12,}$");
 
-
         public AccountServicing(string connectionString)
         {
             this.connectionString = connectionString;
@@ -83,19 +82,30 @@ namespace WeatherApp
                 return builder.ToString();
             }
         }
-        private bool VerifyPassword(string enteredPassword, string storedHash)
+        public bool VerifyPassword(string userName, string enteredPassword)
         {
-            string hashOfEnteredPassword = HashPassword(enteredPassword);
-            return hashOfEnteredPassword == storedHash;
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
+            {
+                connection.Open();
+                string hashOfEnteredPassword = HashPassword(enteredPassword);
+                List<string> userPassword = connection.Query<string>($"SELECT up.userPassword FROM userPassword AS up INNER JOIN userInfo AS ui ON up.userID = ui.userID WHERE ui.userName = '{userName}' AND userPassword = '{hashOfEnteredPassword}'").ToList();
+
+                if(userPassword.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public bool verifyuserName(string userName)
         {
-            try
-            {
-                using (IDbConnection connection = new MySqlConnection("Server=localhost;Port=3306;Database=weatherappuserdata;Uid=root;Pwd=1Sully75$27062003;"))
+                using (IDbConnection connection = new MySqlConnection(getConnectionString()))
                 {
-                    connection.Open(); // Explicitly open the connection
+                    connection.Open();
                     List<string> userNames = connection.Query<string>($"SELECT userName FROM userInfo WHERE userName = '{userName}'").ToList();
                     if (userNames.Count > 0)
                     {
@@ -106,19 +116,15 @@ namespace WeatherApp
                         return false;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Log or print the exception details
-                Console.WriteLine($"Exception: {ex.Message}");
-                return false;
-            }
+            
         }
 
 
-        private static string getConnectionString(string name)
+        private static string getConnectionString()
         {
-            return "Server=localhost,3306;Database=weatherappuserdata;User ID=root;Password=1Sully75$27062003;";
+            string connectionString = "Server=localhost;Database=weatherappuserdata;Uid=Thomas;Pwd=1234.weather;";
+
+            return connectionString;
         }
     }
 }
