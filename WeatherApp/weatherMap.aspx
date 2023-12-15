@@ -18,11 +18,7 @@
 <asp:Content ID="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body> 
-    <div>
-            <asp:Literal ID="errorText" runat="server"></asp:Literal>
-        </div>
    <div id="map"></div>  
-    <div id="text"></div>
 </body>
 </html>
 </asp:Content>
