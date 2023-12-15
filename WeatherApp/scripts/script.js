@@ -117,3 +117,22 @@ function toggleRegistrationForm() {
         loginContainer.style.display = 'block'; // Show the login form
     }
 }
+
+
+/*
+ * FUNCTION      :
+ *
+ * DESCRIPTION   :
+ * 
+ * PARAMETERS    :
+ * 
+ * RETURNS       :
+ * 
+ */ 
+function hideLoginUI() {
+    var loginContainer = document.getElementById('loginContainer');
+    if (loginContainer) {
+        loginContainer.style.display = 'none';
+    }
+   
+}
