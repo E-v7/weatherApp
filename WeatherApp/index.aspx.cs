@@ -25,7 +25,7 @@ namespace WeatherApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountService = new AccountServicing();
+            //accountService = new AccountServicing();
             
         }
         [WebMethod]
@@ -56,23 +56,22 @@ namespace WeatherApp
 
             if (accountService.VerifyLogin(username, password))
             {
-                // Store the username in the session state
+                // Store username in session for later use
                 Session["Username"] = username;
 
-                // Call a client-side function to update the UI after login
-                string script = $@"
-                    document.getElementById('loginContainer').style.display = 'none';
-                    document.getElementById('welcomeMessage').innerText = 'Hi {username}! Do you want to search a forecast today?';
-                    document.getElementById('welcomeMessage').style.display = 'block';";
-                ScriptManager.RegisterStartupScript(this, GetType(), "PostLoginUI", script, true);
+                // Set greeting text and make it visible
+                Greeting.Text = $"Hi {username}! Do you want to search a forecast today?";
+                Greeting.Visible = true;
+
+                // Hide the login UI
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideLogin", "hideLoginUI();", true);
             }
             else
             {
-                // Display an error message on the UI
-                //ErrorMessage.Text = "Invalid username or password.";
-                //ErrorMessage.Visible = true;
+                // Logic for failed login
             }
         }
+
 
 
         /*
