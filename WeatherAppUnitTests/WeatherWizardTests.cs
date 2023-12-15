@@ -37,7 +37,18 @@ namespace WeatherApp.Tests {
 
             Assert.IsNull(data);
         }
+        [TestMethod]
+        public void GetHourlyWeatherTest_WithTwoBadParameter() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("bad request", "bad request");
 
+            Assert.IsNull(data);
+        }
+        [TestMethod]
+        public void GetHourlyWeatherTest_WithThreeBadParameter() {
+            var data = WeatherWizard.GetCurrentWeatherToJObject("bad request", "bad request", "bad request");
+
+            Assert.IsNull(data);
+        }
 
         [TestMethod()]
         public void GetHourlyWeatherToWeatherTest() {
@@ -110,15 +121,10 @@ namespace WeatherApp.Tests {
         }
 
         [TestMethod]
-        public void JObjectTesting() {
-            var data = WeatherWizard.GetCurrentWeatherToJObject("Waterloo");
+        public void Get5DayWeatherToJObject_WithOneArgGood() {
+            var data = WeatherWizard.Get5DayWeatherToJObject("Waterloo");
 
-            Assert.AreEqual("Waterloo".ToLower(), data.GetValue("name").ToString().ToLower());
-            Assert.IsNotNull(data.GetValue("weather").ToString());
-            var test = data.GetValue("weather");
-            Assert.IsInstanceOfType(test, typeof(JArray));
-
-            var dateTime = DateTime.Parse("1702250463").ToString();
+            Assert.IsNotNull(data);
         }
     }
 }

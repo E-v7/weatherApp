@@ -216,7 +216,7 @@ namespace WeatherApp {
         public static JObject Get5DayWeatherToJObject(double lat, double lon) {
             JObject jsonData;
 
-            string url = $"api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={settings.APIKEY}";
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={settings.APIKEY}";
             jsonData = RequestAPI(url);
 
             return jsonData;
@@ -239,7 +239,7 @@ namespace WeatherApp {
         public static JObject Get5DayWeatherToJObject(string cityName, string countryCode = null, string stateCode = null) {
             JObject jsonData;
 
-            string url = $"api.openweathermap.org/data/2.5/forecast?q={cityName}";
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName.ToLower()}";
             if (!string.IsNullOrEmpty(stateCode)) {
                 url += $",{stateCode}";
             }

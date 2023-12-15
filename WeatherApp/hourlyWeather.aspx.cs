@@ -11,7 +11,9 @@ namespace WeatherApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var div = testing;
+            var currentWeather = WeatherWizard.GetCurrentWeatherToJObject("waterloo");
+            div.InnerHtml = WeatherWriter.CreateCurrentWeatherCard(currentWeather);
         }
     }
 }

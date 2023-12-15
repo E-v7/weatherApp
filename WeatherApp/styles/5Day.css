@@ -1,0 +1,21 @@
+﻿main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 3px solid;
+    border-collapse: collapse;
+    background-color: #E0E0E0;
+}
+
+tr, td {
+    border: 3px solid;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: larger;
+    font-weight: bold;
+}

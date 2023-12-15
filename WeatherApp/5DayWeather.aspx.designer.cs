@@ -10,7 +10,7 @@
 namespace WeatherApp {
 
 
-    public partial class hourlyWeather {
+    public partial class _5DayWeather {
 
         /// <summary>
         /// form1 control.
@@ -22,12 +22,21 @@ namespace WeatherApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// testing control.
+        /// location control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl testing;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText location;
+
+        /// <summary>
+        /// page_main control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl page_main;
     }
 }
