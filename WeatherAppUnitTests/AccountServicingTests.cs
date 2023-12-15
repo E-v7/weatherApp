@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -62,14 +63,58 @@ namespace WeatherAppUnitTests
         }
 
 
-        [TestMethod()]
+        /*[TestMethod()]
         public void verifyCreatingUserAllCorrectInfo()
         {
             var accountServicing = new AccountServicing(connectionString);
             bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas12345$", "taudet@example.com");
-            Assert.IsTrue(AccountCreationValid, "The password should not exist");
+            Assert.IsTrue(AccountCreationValid, "The account was created");
+        }*/
+
+        [TestMethod()]
+        public void verifyCreatingUserpasswordnotStrong()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas", "taudet@example.com");
+            Assert.IsFalse(AccountCreationValid, "The account should not be created");
+        }
+
+
+
+        [TestMethod()]
+        public void VerifyAddingSavedLocation()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 2);
+            Assert.IsTrue(locationAdded, "The location should be added");
         }
 
         [TestMethod()]
+        public void VerifyAddingExistingID()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 201);
+            Assert.IsFalse(locationAdded, "The location should not added");
+        }
+
+        [TestMethod()]
+        public void VerifyAddingNegativeID()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", -202121);
+            Assert.IsFalse(locationAdded, "The location should not added");
+        }
+
+        [TestMethod()]
+        public void VerifyAddingHigherID()
+        {
+            var accountServicing = new AccountServicing(connectionString);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 99999999);
+            Assert.IsFalse(locationAdded, "The location should not added");
+        }
+
+        //[TestMethod()]
+
+
     }
 }

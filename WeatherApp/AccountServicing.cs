@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -49,14 +50,17 @@ namespace WeatherApp
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
             {
+                return false;
                 throw new ArgumentException("Username, password, and email cannot be blank.");
             }
             if (!passwordRegex.IsMatch(password))
             {
+                return false;
                 throw new ArgumentException("Password does not meet security requirements.");
             }
             if (VerifyLogin(username, password) == true)
             {
+                return false;
                 throw new ArgumentException("An account with this username or email already exists.");
             }
 
@@ -129,21 +133,40 @@ namespace WeatherApp
 
         public bool AddSavedLocation(string city, string country, int userID)
         {
+            int highestID = returnHighestID();
+            if (highestID < userID || userID < 0)
+            {
+                return false;
+            }
             using (IDbConnection connection = new MySqlConnection(getConnectionString()))
             {
                 
                 connection.Open();
                 List<string> stateCode = connection.Query<string>("SELECT savedStateCode FROM `userSavedLocation` WHERE `savedStateCode` = @SavedStateCode AND `savedCountry` = @SavedCountry AND `userID` = @UserID", new { SavedStateCode = city, SavedCountry = country, UserID = userID }).ToList();
 
-                if(stateCode.Count > 0)
+                if (stateCode.Count > 0)
                 {
                     return false;
                 }
 
+
                 connection.Execute("INSERT INTO `userSavedLocation` (`savedStateCode`, `savedCountry`, `userID`) VALUES (@SavedStateCode, @SavedCountry, @UserID)", new { SavedStateCode = city, SavedCountry = country, UserID = userID });
+                return true;
             }
         }
 
+
+        public int returnHighestID()
+        {
+            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
+            {
+
+                connection.Open();
+                int HighestID = connection.QueryFirstOrDefault<int>($"SELECT MAX(userID) FROM userInfo");
+
+                return HighestID;
+            }
+        }
 
         private static string getConnectionString()
         {
