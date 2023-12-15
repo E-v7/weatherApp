@@ -1,5 +1,5 @@
 ﻿function initMap(latitude, longitude, apiKey, description) {
-    document.getElementById("text").innerHTML = "lat" + latitude + "long" + longitude;
+   // document.getElementById("text").innerHTML = "lat" + latitude + "long" + longitude;
     var map = L.map('map');   
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,6 +18,7 @@
     
 }
 function getLocationAndWeather(apiKey) {
+    //Zoom in to current location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var lat = position.coords.latitude;
@@ -32,7 +33,9 @@ function getLocationAndWeather(apiKey) {
 }
 
 function showError(error, apiKey) {
+
     initMap(40.7143, -74.006, apiKey, "");  //if location is not valid map will reload to default coordinates
+
     switch (error.code) {
         case error.PERMISSION_DENIED:
             alert("Geolocation request from User was denied.");

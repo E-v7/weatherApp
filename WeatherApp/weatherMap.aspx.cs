@@ -58,7 +58,6 @@ namespace WeatherApp
                     //if the search is invalid, alert and reset to default coordinates
                     string script = "alert('Unable to get weather for this location!');";
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-                    description = "";
                     string scriptMap = "initMap("+latitude+","+longitude+", '" + apiKey + "', '" + description + "');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "InitializeMap", scriptMap, true);
                 }
