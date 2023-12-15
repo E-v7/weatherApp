@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeatherApp {
+namespace WeatherApp
+{
 
 
-    public partial class hourlyWeather {
+    public partial class hourlyWeather
+    {
 
         /// <summary>
         /// form1 control.
@@ -29,5 +31,14 @@ namespace WeatherApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl testing;
+
+        /// <summary>
+        /// city control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button city;
     }
 }

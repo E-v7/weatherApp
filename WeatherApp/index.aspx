@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Weather App Home" Language="C#" MasterPageFile="~/Header.master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="WeatherApp.index" %>
+﻿    <%@ Page Title="Weather App Home" Language="C#" MasterPageFile="~/Header.master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="WeatherApp.index" %>
 
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -6,21 +6,12 @@
      <link href="styles/style.css" rel="stylesheet" />  
 </asp:Content>
 
-<asp:Content ID="mainContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content id="search" ContentPlaceHolderID="PageButton" runat="server">
+<asp:Button id="Search" runat="server" Text="Search" OnClick="Search_Click" />
+</asp:Content>
+<asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
-        <header>
-            <h1 id="title">The Weather App</h1>
-            <div id="navigation_bar">
-                <a href="index.aspx">Home</a>
-                <a href="hourlyWeather.aspx">Current</a>
-                <a href="5DayWeather.aspx">5 Day</a>
-                <a href="#">OTHER</a>
-                <input id="location" placeholder="Enter a location" type="text" runat="server"/>
-                <asp:Button runat="server" id="Search" Text="Search" CssClass="search-button" OnClick="Search_Click" />
-
-            </div>
-        </header>
         <div class="main-container">
             <div class="left-container">
                 <h2>Do you consent to sharing your location?</h2>

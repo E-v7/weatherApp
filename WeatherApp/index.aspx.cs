@@ -1,4 +1,5 @@
 ﻿using Microsoft.SqlServer.Server;
+using MongoDB.Driver.Core.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,12 +21,12 @@ namespace WeatherApp
 {
     public partial class index : System.Web.UI.Page
     {
-        //protected AccountServicing accountService;
+        protected AccountServicing accountService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //accountService = new AccountServicing();
-            // additional page load logic if necessary
+            accountService = new AccountServicing();
+            
         }
         [WebMethod]
         public static string GetWeather(double lat, double lon)
@@ -50,8 +51,8 @@ namespace WeatherApp
          */
         protected void Login_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text;
+            string username = userName.Text.Trim();
+            string password = passWord.Text;
 
             if (accountService.VerifyLogin(username, password))
             {
@@ -68,8 +69,8 @@ namespace WeatherApp
             else
             {
                 // Display an error message on the UI
-                ErrorMessage.Text = "Invalid username or password.";
-                ErrorMessage.Visible = true;
+                //ErrorMessage.Text = "Invalid username or password.";
+                //ErrorMessage.Visible = true;
             }
         }
 
@@ -88,12 +89,12 @@ namespace WeatherApp
         protected void Register_Click(object sender, EventArgs e)
         {
 
-            string email = Email.Text.Trim();
-            string username = Username.Text.Trim();
+            string email = emailAddress.Text.Trim();
+            string username = regUsername.Text.Trim();
             string password = regPassword.Text;
-            string confirmPassword = ConfirmPassword.Text;
+            string confPassword = confirmPassword.Text;
 
-            if (password != confirmPassword)
+            if (password != confPassword)
             {
                 // Passwords do not match
                 // Display error message

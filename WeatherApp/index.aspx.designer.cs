@@ -15,28 +15,39 @@ namespace WeatherApp
     {
 
         /// <summary>
-        /// MainPageForm control.
+        /// Search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainPageForm;
+        protected global::System.Web.UI.WebControls.Button Search;
 
         /// <summary>
-<<<<<<< HEAD
-        /// location control.
-=======
-        /// userName control.
->>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
+        /// WeatherInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
-        protected global::System.Web.UI.HtmlControls.HtmlInputText location;
-=======
+        protected global::System.Web.UI.WebControls.Label WeatherInfo;
+
+        /// <summary>
+        /// Greeting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Greeting;
+
+        /// <summary>
+        /// userName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox userName;
 
         /// <summary>
@@ -119,6 +130,5 @@ namespace WeatherApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button register;
->>>>>>> 259508c953893425b02a78ef81871d26f5b481ec
     }
 }
