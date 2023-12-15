@@ -4,8 +4,9 @@
 
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <title>Master Page</title>
+    <link href="styles/header.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"> 
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -18,7 +19,8 @@
             <a href="weatherMap.aspx">Weather Map</a>
             <div class="searchbox">
                 <input class="textbox" id="city" name="city" type="text"/>
-
+                <asp:ContentPlaceHolder ID="PageButton" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
         </div>
     </header>
@@ -26,13 +28,13 @@
     <asp:ContentPlaceHolder ID="MainContent" runat="server">
     </asp:ContentPlaceHolder>
 
-    <asp:ContentPlaceHolder ID="PageButton" runat="server">
-    </asp:ContentPlaceHolder>
+    
         </form>
-    <footer>
+    <footer id="footer">
         <p>Web Based Weather App</p>
         <p>Software Quality</p>
         <p>Project Team 3</p>
+        <p>Kushika Senera, Evan Pogue, Thomas Audet, Ashwini Gunaga</p>
     </footer>
 </body>
 </html>
