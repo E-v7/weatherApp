@@ -25,10 +25,29 @@ namespace WeatherApp
         protected AccountServicing accountService;
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
-            //accountService = new AccountServicing();
-            
+            accountService = new AccountServicing();
+            if (!IsPostBack)
+            {
+                if (Session["Username"] != null)
+                {
+                    // User is logged in, update the greeting message
+                    Greeting.Text = $"Hi {Session["Username"]}! Do you want to search a forecast today?";
+                    Greeting.Visible = true;
+
+                    // Hide the login UI components
+                    loginContainer.Visible = false;
+                }
+                else
+                {
+                    // User is not logged in, show the login UI components
+                    loginContainer.Visible = true;
+                    Greeting.Visible = false;
+                }
+            }
         }
+
         [WebMethod]
         public static string GetWeather(double lat, double lon)
         {
