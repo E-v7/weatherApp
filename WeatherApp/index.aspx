@@ -25,6 +25,7 @@
             </div>
             <div class="right-container">
                 <asp:Label runat="server" id="Greeting" Visible="False" CssClass="weather-info"></asp:Label>
+                <asp:Label runat="server" id="loginMessage" Visible="false" CssClass="login-message"></asp:Label>
 
                 <div id="loginContainer" class="login-container">
                     <label for="userName">Username or Email</label>
