@@ -260,6 +260,11 @@ label {
     text-align: center;
 }
 
+.login-message {
+    color: green;
+    margin-bottom: 15px;
+    text-align: center;
+}
 
 .weather-info {
     margin: 10px 0;

@@ -1,4 +1,5 @@
-﻿using Microsoft.SqlServer.Server;
+﻿using Amazon.Runtime.Internal.Util;
+using Microsoft.SqlServer.Server;
 using MongoDB.Driver.Core.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -92,35 +93,40 @@ namespace WeatherApp
          */
         protected void Register_Click(object sender, EventArgs e)
         {
-
             string email = emailAddress.Text.Trim();
             string username = regUsername.Text.Trim();
             string password = regPassword.Text;
-            string confPassword = confirmPassword.Text;
 
-            if (password != confPassword)
-            {
-                // Passwords do not match
-                // Display error message
-                // ErrorMessage.Text = "Passwords do not match.";
-                // ErrorMessage.Visible = true;
-                return;
-            }
+            // Attempt to create a new account using the AccountServicing class
+            bool isAccountCreated = accountService.CreateAccount(username, password, email);
 
-            // Attempt to create a new account
-            if (accountService.CreateAccount(username, password, email))
+            if (isAccountCreated)
             {
-                // Account creation successful
-                // Possibly redirect to a welcome page or login page
-                // Response.Redirect("Welcome.aspx");
+                // Account creation was successful
+                // Hide the registration form
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "HideRegistrationForm", "hideRegistrationForm();", true);
+
+                // Show the login form with a message to log in with the new credentials
+                loginMessage.Text = "Your account was successfully created. Please log in with your new credentials.";
+                loginMessage.Visible = true;
+
+                // Optionally, clear the registration form fields
+                ClearRegistrationForm();
             }
             else
             {
-                // Account creation failed
-                // Display error message
-                // ErrorMessage.Text = "Failed to create account. Please try again.";
-                // ErrorMessage.Visible = true;
+                // Account creation failed, show error message
+                // Here you would display the error message on your UI
             }
+        }
+
+        // Method to clear the registration form fields
+        private void ClearRegistrationForm()
+        {
+            emailAddress.Text = string.Empty;
+            regUsername.Text = string.Empty;
+            regPassword.Text = string.Empty;
+            confirmPassword.Text = string.Empty;
         }
 
         /*
@@ -162,8 +168,18 @@ namespace WeatherApp
 
             if (weatherData != null)
             {
-                WeatherInfo.Text = weatherData.ToString(Formatting.None);
-                WeatherInfo.Visible = true;
+                // Convert weather data to JSON string
+                string weatherJson = weatherData.ToString(Formatting.None);
+
+                // Call the displayWeather JavaScript function with the weather data
+                string script = $"displayWeather('{weatherJson}');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "DisplayWeather", script, true);
+
+                // Hide the login UI if the user is logged in
+                if (Session["Username"] != null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "HideLogin", "hideLoginUI();", true);
+                }
             }
             else
             {
