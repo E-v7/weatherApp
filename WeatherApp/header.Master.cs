@@ -32,5 +32,20 @@ namespace WeatherApp
                 ddlSavedLocations.Items.Add(location);
             }
         }
+
+        protected void historyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void savedLocationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void saveCurrentLoctionButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

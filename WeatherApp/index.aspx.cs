@@ -177,7 +177,7 @@ namespace WeatherApp
                 // Call the displayWeather JavaScript function with the weather data
                 string script = $"displayWeather('{weatherJson}');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "DisplayWeather", script, true);
-
+                accountService.AddHistoryLocation(searchParts[0], 201);
                 // Hide the login UI if the user is logged in
                 if (Session["Username"] != null)
                 {

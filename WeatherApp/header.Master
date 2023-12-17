@@ -17,8 +17,17 @@
             <a href="index.aspx">Home</a>
             <a href="5DayWeather.aspx">5Day Weather</a>
             <a href="weatherMap.aspx">Weather Map</a>
-            <asp:DropDownList ID="ddlHistoryLocations" runat="server"></asp:DropDownList>
-            <asp:DropDownList ID="ddlSavedLocations" runat="server"></asp:DropDownList>
+            <div>
+                <asp:DropDownList ID="ddlHistoryLocations" runat="server"></asp:DropDownList>
+                <asp:Button ID="historyButton" runat="server" OnClick="historyButton_Click" Text="Go" />
+            </div>
+            <div>
+                <asp:DropDownList ID="ddlSavedLocations" runat="server"></asp:DropDownList>
+                <asp:Button ID="savedLocationButton" runat="server" OnClick="savedLocationButton_Click" Text="Go" />
+            </div>
+
+            <asp:Button ID="saveCurrentLoctionButton" runat="server" Text="Save Location" OnClick="saveCurrentLoctionButton_Click" />
+
             <div class="searchbox">
                 <input class="textbox" id="city" name="city" type="text"/>
                 <asp:ContentPlaceHolder ID="PageButton" runat="server">

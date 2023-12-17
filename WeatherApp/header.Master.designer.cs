@@ -42,6 +42,15 @@ namespace WeatherApp
         protected global::System.Web.UI.WebControls.DropDownList ddlHistoryLocations;
 
         /// <summary>
+        /// historyButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button historyButton;
+
+        /// <summary>
         /// ddlSavedLocations control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,24 @@ namespace WeatherApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSavedLocations;
+
+        /// <summary>
+        /// savedLocationButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button savedLocationButton;
+
+        /// <summary>
+        /// saveCurrentLoctionButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveCurrentLoctionButton;
 
         /// <summary>
         /// PageButton control.
