@@ -136,9 +136,8 @@ namespace WeatherApp
         /*
          * FUNCTION      :Search_Click(object sender, EventArgs e)
          *
-         * DESCRIPTION   :Search button click event handler that calls a method RequestCurrentWeatherAPI
-         *                from WeatherWizard class and pulls the weather forecast for the location being 
-         *                entered in the search bar. 
+         * DESCRIPTION   : Takes the data from the search bar and sends it to a helper function
+         *                  that will populate the page with weather data based upon the search
          * 
          * PARAMETERS    :NONE 
          * 
@@ -153,7 +152,15 @@ namespace WeatherApp
         }
 
         /*
+         * Method       : ParseAndDisplayWeatherData()
          * 
+         * Description  : Search button click event handler that calls a method RequestCurrentWeatherAPI
+         *                  from WeatherWizard class and pulls the weather forecast for the location being 
+         *                  entered in the search bar. Then displays it onto the page.
+         * 
+         * Parameters   : string searchQuery - The string contating the city data the user wants to get the weather data
+         * 
+         * Returns      : None
          */
         private void ParseAndDisplayWeatherData(string searchQuery) {
             // splitting user's search by comma if they enter all three parameters 
