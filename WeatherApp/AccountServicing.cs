@@ -289,8 +289,7 @@ namespace WeatherApp
         public int returnHighestID()
         {
             //crete the db connection
-            using (IDbConnection connection = new MySqlConnection(getConnectionString()))
-            {
+            using (IDbConnection connection = new MySqlConnection(getConnectionString())) {
                 //connect to the db
                 connection.Open();
                 //search for the max userID

@@ -30,7 +30,9 @@ namespace WeatherApp
         {
             accountService = new AccountServicing(settings.ConnectionString);
 
-           
+            if (Session["LastSearch"] != null) {
+                ParseAndDisplayWeatherData(Session["LastSearch"].ToString());
+            }
         }
         [WebMethod]
         public static string GetWeather(double lat, double lon)
@@ -147,29 +149,30 @@ namespace WeatherApp
         {
             string searchQuery = Request.Form["city"];
 
+            ParseAndDisplayWeatherData(searchQuery);
+        }
+
+        /*
+         * 
+         */
+        private void ParseAndDisplayWeatherData(string searchQuery) {
             // splitting user's search by comma if they enter all three parameters 
             string[] searchParts = searchQuery.Split(',');
             JObject weatherData = null;
 
             // determines the number of parts and call the appropriate WeatherWizard method
-            if (searchParts.Length == 1)
-            {
+            if (searchParts.Length == 1) {
                 // city name only
                 weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim());
-            }
-            else if (searchParts.Length == 2)
-            {
+            } else if (searchParts.Length == 2) {
                 // city and country code
                 weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim(), searchParts[1].Trim());
-            }
-            else if (searchParts.Length == 3)
-            {
+            } else if (searchParts.Length == 3) {
                 // city, state code, and country code
                 weatherData = WeatherWizard.GetCurrentWeatherToJObject(searchParts[0].Trim(), searchParts[2].Trim(), searchParts[1].Trim());
             }
 
-            if (weatherData != null)
-            {
+            if (weatherData != null) {
                 // convert pulled weather data to JSON string
                 string weatherJson = weatherData.ToString(Formatting.None);
 
@@ -178,17 +181,14 @@ namespace WeatherApp
                 ScriptManager.RegisterStartupScript(this, GetType(), "DisplayWeather", script, true);
 
                 // hides the login UI if the user is logged in
-                if (Session["Username"] != null)
-                {
+                if (Session["Username"] != null) {
                     ScriptManager.RegisterStartupScript(this, GetType(), "HideLogin", "hideLoginUI();", true);
                 }
-            }
-            else
-            {
+                Session["LastSearch"] = searchQuery;
+            } else {
                 WeatherInfo.Text = "Weather information could not be retrieved.";
                 WeatherInfo.Visible = true;
             }
         }
-
     }
 }
