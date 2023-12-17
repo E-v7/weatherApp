@@ -84,7 +84,10 @@ namespace WeatherApp
         /*
          * FUNCTION      : Register_Click(object sender, EventArgs e)
          *
-         * DESCRIPTION   :
+         * DESCRIPTION   : uses CreateAccount method from the AccountServicing class in order to verify 
+         *                 username and email and password used to create the account. This click event
+         *                 specifically hides the register part of the login-container and prompts user
+         *                 to log in with their newly created credentials. 
          * 
          * PARAMETERS    : NONE 
          * 
@@ -97,30 +100,26 @@ namespace WeatherApp
             string username = regUsername.Text.Trim();
             string password = regPassword.Text;
 
-            // Attempt to create a new account using the AccountServicing class
+            // attempt to create a new account uses AccountServicing class
             bool isAccountCreated = accountService.CreateAccount(username, password, email);
 
             if (isAccountCreated)
             {
-                // Account creation was successful
-                // Hide the registration form
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "HideRegistrationForm", "hideRegistrationForm();", true);
 
-                // Show the login form with a message to log in with the new credentials
+                // login section prompts user to log in with the new credentials
                 loginMessage.Text = "Your account was successfully created. Please log in with your new credentials.";
                 loginMessage.Visible = true;
-
-                // Optionally, clear the registration form fields
+                
                 ClearRegistrationForm();
             }
             else
             {
-                // Account creation failed, show error message
-                // Here you would display the error message on your UI
+                // account creation failed, show error message
             }
         }
 
-        // Method to clear the registration form fields
+        // method to clear the registration form fields
         private void ClearRegistrationForm()
         {
             emailAddress.Text = string.Empty;
@@ -168,14 +167,14 @@ namespace WeatherApp
 
             if (weatherData != null)
             {
-                // Convert weather data to JSON string
+                // convert pulled weather data to JSON string
                 string weatherJson = weatherData.ToString(Formatting.None);
 
-                // Call the displayWeather JavaScript function with the weather data
+                // call the displayWeather from script.js
                 string script = $"displayWeather('{weatherJson}');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "DisplayWeather", script, true);
 
-                // Hide the login UI if the user is logged in
+                // hides the login UI if the user is logged in
                 if (Session["Username"] != null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "HideLogin", "hideLoginUI();", true);
