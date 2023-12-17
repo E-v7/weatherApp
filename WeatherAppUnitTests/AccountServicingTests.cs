@@ -145,7 +145,7 @@ namespace WeatherAppUnitTests
         public void VerifyGetHistoryLocations()
         {
             var accountServicing = new AccountServicing(connectionString);
-            List<UserHistory> historyFound = accountServicing.GetHistoryLocations(201);
+            List<string> historyFound = accountServicing.GetHistoryLocations(201);
             Assert.IsNotNull(historyFound, "there should be a history");
         }
 
@@ -154,7 +154,7 @@ namespace WeatherAppUnitTests
         public void VerifyGetSavedLocations()
         {
             var accountServicing = new AccountServicing(connectionString);
-            List<SavedLocation> historyFound = accountServicing.GetSavedLocations(201);
+            List<string> historyFound = accountServicing.GetSavedLocations(201);
             Assert.IsNotNull(historyFound, "there should be saved locations");
         }
 
