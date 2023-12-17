@@ -16,6 +16,13 @@ $(document).ready(function () {
 
 
 /*
+* TITLE : “Geolocation API Specification 2nd Edition” function source code
+* AUTHOR : A. Popescu, Google Inc
+* DATE : 2016-11-08
+* VERSION : https://www.w3.org/TR/2022/REC-geolocation-20220901/
+* AVAILABIILTY : https://www.w3.org/TR/2022/REC-geolocation-20220901/
+*/
+/*
  * FUNCTION      :function getLocationAndWeather()
  *
  * DESCRIPTION   :This function uses HTML geolocation api built into webforms if HTTPS is selected
@@ -114,10 +121,10 @@ function showError(error) {
             alert("Geolocation request from User was denied.");
             break;
         case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
+            alert("Location information is not available.");
             break;
         case error.TIMEOUT:
-            alert("The request to get user location timed out.");
+            alert("The request timed out.");
             break;
         case error.UNKNOWN_ERROR:
             alert("An unknown error occurred.");
