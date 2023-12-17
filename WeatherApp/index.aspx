@@ -6,7 +6,7 @@
      <link href="styles/style.css" rel="stylesheet" />  
 </asp:Content>
 
-<asp:Content id="search" ContentPlaceHolderID="PageButton" runat="server">
+<asp:Content id="city" ContentPlaceHolderID="PageButton" runat="server">
 <asp:Button id="Search" runat="server" Text="Search" OnClick="Search_Click" />
 </asp:Content>
 <asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -40,10 +40,6 @@
                     <a href="javascript:void(0);" class="link-style" onclick="toggleRegistrationForm(); return false;">Register for an account now!</a>
                 </div>
                 <div id="registrationCont" class="registration-container" style="display:none;">
-                    <label for="firstName">First Name</label>
-                    <asp:TextBox runat="server" id="firstName" CssClass="input-field "></asp:TextBox>
-                    <label for="lastName">Last Name</label>
-                    <asp:TextBox runat="server" id="lastName" CssClass="input-field "></asp:TextBox>
                     <label for="emailAddress">Email</label>
                     <asp:TextBox runat="server" id="emailAddress" CssClass="input-field "></asp:TextBox>
                     <label for="regUsername">Username</label>

@@ -37,6 +37,7 @@
             background-size: 100% 1.5px;
             color: palevioletred;
         }
+
 html, body {
     margin: 0;
     padding: 0;
@@ -48,9 +49,8 @@ body {
 }
 
 #footer {
-    position: absolute;
+    display: block;
     bottom: 0;
-    width: 100%;
     background-color: cadetblue;
     padding: 5px;
     text-align: center;

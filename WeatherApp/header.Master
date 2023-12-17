@@ -15,8 +15,10 @@
         <h1 id="title">The Weather App</h1>
         <div id="navigation_bar">
             <a href="index.aspx">Home</a>
-            <a href="hourlyWeather.aspx">Hourly Weather</a>
+            <a href="5DayWeather.aspx">5Day Weather</a>
             <a href="weatherMap.aspx">Weather Map</a>
+            <asp:DropDownList ID="ddlHistoryLocations" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="ddlSavedLocations" runat="server"></asp:DropDownList>
             <div class="searchbox">
                 <input class="textbox" id="city" name="city" type="text"/>
                 <asp:ContentPlaceHolder ID="PageButton" runat="server">

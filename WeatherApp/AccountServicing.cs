@@ -239,7 +239,7 @@ namespace WeatherApp
             }
         }
 
-        public List<UserHistory> GetHistoryLocations(int userID)
+        public List<string> GetHistoryLocations(int userID)
         {
             int highestID = returnHighestID();
             if (highestID < userID || userID < 0)
@@ -251,14 +251,16 @@ namespace WeatherApp
             {
                 //connect to the db
                 connection.Open();
-                List<UserHistory> history = connection.Query<UserHistory>($"SELECT * FROM userHistory WHERE userID = {userID}").ToList();
+                List<string> history = connection.Query<string>($"SELECT historyStateCode FROM userHistory WHERE userID = {userID}").ToList();
+
+                
 
                 return history;
             }
 
         }
 
-        public List<SavedLocation> GetSavedLocations(int userID)
+        public List<string> GetSavedLocations(int userID)
         {
             int highestID = returnHighestID();
             if (highestID < userID || userID < 0)
@@ -270,7 +272,7 @@ namespace WeatherApp
             {
                 //connect to the db
                 connection.Open();
-                List<SavedLocation> savedLoactions = connection.Query<SavedLocation>($"SELECT * FROM userSavedLocation WHERE userID = {userID}").ToList();
+                List<string> savedLoactions = connection.Query<string>($"SELECT savedStateCode FROM userSavedLocation WHERE userID = {userID}").ToList();
 
                 return savedLoactions;
             }
