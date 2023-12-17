@@ -1,29 +1,23 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="5DayWeather.aspx.cs" Inherits="WeatherApp._5DayWeather" %>
+﻿<%@ Page Title="5 Day Weather" Language="C#" MasterPageFile="~/Header.master" AutoEventWireup="true" CodeBehind="5DayWeather.aspx.cs" Inherits="WeatherApp._5DayWeather" %>
 
-<!DOCTYPE html>
+<asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <link href="styles/style.css" rel="stylesheet" />
+     <link href="styles/5Day.css" rel="stylesheet" />  
+</asp:Content>
+
+<asp:Content id="search" ContentPlaceHolderID="PageButton" runat="server">
+<asp:Button id="Button1" runat="server" Text="Search" />
+</asp:Content>
+<asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>5 Day Weather</title>
-    <link href="styles/style.css" rel="stylesheet" />
-    <link href="styles/5Day.css" rel="stylesheet" />
-</head>
 <body>
-    <form id="form1" runat="server">
-        <header>
-            <h1 id="title">The Weather App</h1>
-            <div id="navigation_bar">
-                <a href="index.aspx">Home</a>
-                <a href="hourlyWeather.aspx">Current</a>
-                <a href="5DayWeather.aspx">5 Day</a>
-                <a href="#">OTHER</a>
-                <input id="location" placeholder="Enter a location" type="text" runat="server"/>
-            </div>
-        </header>
-
         <main id="page_main" runat="server">
 
         </main>
-    </form>
 </body>
 </html>
+</asp:Content>
+
+

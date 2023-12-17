@@ -169,7 +169,9 @@
     <Content Include="mongocrypt.dll" />
     <Content Include="scripts\script.js" />
     <Content Include="styles\5Day.css" />
+    <Content Include="styles\header.css" />
     <Content Include="styles\style.css" />
+    <Content Include="weatherMap.aspx" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -211,6 +213,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Weather.cs" />
+    <Compile Include="weatherMap.aspx.cs">
+      <DependentUpon>weatherMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="weatherMap.aspx.designer.cs">
+      <DependentUpon>weatherMap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WeatherWizard.cs" />
     <Compile Include="WeatherWriter.cs" />
   </ItemGroup>

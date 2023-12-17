@@ -24,10 +24,13 @@ namespace WeatherApp
     {
         protected AccountServicing accountService;
 
+        private static Settings settings = new Settings();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //accountService = new AccountServicing();
-            
+            accountService = new AccountServicing(settings.ConnectionString);
+
+           
         }
         [WebMethod]
         public static string GetWeather(double lat, double lon)
@@ -143,7 +146,7 @@ namespace WeatherApp
          */
         protected void Search_Click(object sender, EventArgs e)
         {
-            string searchQuery = Search.Text.Trim();
+            string searchQuery = Request.Form["city"];
 
             // splitting user's search by comma if they enter all three parameters 
             string[] searchParts = searchQuery.Split(',');
