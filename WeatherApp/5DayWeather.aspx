@@ -7,17 +7,13 @@
 </asp:Content>
 
 <asp:Content id="search" ContentPlaceHolderID="PageButton" runat="server">
-<asp:Button id="Button1" runat="server" Text="Search" />
+    <asp:Button id="Search_Button" runat="server" Text="Search" OnClick="Search_Button_Click" />
 </asp:Content>
-<asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<body>
+<asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
         <main id="page_main" runat="server">
 
         </main>
-</body>
-</html>
 </asp:Content>
 
 

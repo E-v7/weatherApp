@@ -7,21 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeatherApp
-{
+namespace WeatherApp {
 
 
-    public partial class _5DayWeather
-    {
+    public partial class _5DayWeather {
 
         /// <summary>
-        /// Button1 control.
+        /// Search_Button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Search_Button;
 
         /// <summary>
         /// page_main control.
