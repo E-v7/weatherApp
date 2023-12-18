@@ -30,7 +30,6 @@ namespace WeatherApp
         {
             accountService = new AccountServicing(settings.ConnectionString);
 
-           
         }
         [WebMethod]
         public static string GetWeather(double lat, double lon)
@@ -181,6 +180,15 @@ namespace WeatherApp
                 if (Session["Username"] != null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "HideLogin", "hideLoginUI();", true);
+                    int userID = 211;
+
+                    accountService.AddHistoryLocation(searchParts[0], userID);
+
+                    List<string> historyLocations = accountService.GetHistoryLocations(userID);
+                    foreach (string location in historyLocations)
+                    {
+                        ddlHistoryLocations.Items.Add(location);
+                    }
                 }
             }
             else
@@ -189,6 +197,35 @@ namespace WeatherApp
                 WeatherInfo.Visible = true;
             }
         }
+
+        protected void historyButton_Click(object sender, EventArgs e)
+        {
+            if (ddlHistoryLocations.SelectedItem != null)
+            {
+                string selectedLocation = ddlHistoryLocations.SelectedItem.Text;
+
+                JObject weatherData = WeatherWizard.GetCurrentWeatherToJObject(selectedLocation);
+
+                if (weatherData != null)
+                {
+                    string weatherJson = weatherData.ToString(Formatting.None);
+
+                    string script = $"displayWeather('{weatherJson}');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "DisplayWeather", script, true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "HideLogin", "hideLoginUI();", true);
+                }
+                else
+                {
+                    WeatherInfo.Text = "Weather information could not be retrieved.";
+                    WeatherInfo.Visible = true;
+                }
+            }
+            else
+            {
+                
+            }
+        }
+        
 
     }
 }

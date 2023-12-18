@@ -71,7 +71,7 @@ namespace WeatherAppUnitTests
         public void verifyCreatingUserAllCorrectInfo()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas1234567$", "taudet@example.com");
+            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas12345$", "taudet@example.com");
             Assert.IsTrue(AccountCreationValid, "The account was created");
         }*/
 
@@ -97,7 +97,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddingExistingID()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 201);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", 201);
             Assert.IsFalse(locationAdded, "The location should not added");
         }
 
@@ -105,7 +105,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddingNegativeID()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", -202121);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", -202121);
             Assert.IsFalse(locationAdded, "The location should not added");
         }
 
@@ -113,7 +113,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddingHigherID()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddSavedLocation("Milton", "ON", 99999999);
+            bool locationAdded = accountServicing.AddSavedLocation("Milton", 99999999);
             Assert.IsFalse(locationAdded, "The location should not added");
         }
 
@@ -121,7 +121,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddHistoryLocation()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", 201);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", 201);
             Assert.IsTrue(locationAdded, "the location should be added");
         }
 
@@ -129,7 +129,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddHistoryLocationNegativeID()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", -201);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", -201);
             Assert.IsFalse(locationAdded, "the location should not be added");
         }
 
@@ -137,7 +137,7 @@ namespace WeatherAppUnitTests
         public void VerifyAddHistoryLocationHigherID()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool locationAdded = accountServicing.AddHistoryLocation("Milton", "ON", 99999999);
+            bool locationAdded = accountServicing.AddHistoryLocation("Milton", 99999999);
             Assert.IsFalse(locationAdded, "the location should not be added");
         }
 

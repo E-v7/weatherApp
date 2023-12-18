@@ -192,7 +192,7 @@ namespace WeatherApp
         * Returns        : bool : returns true if everything went well and return false when something is invalid
         */
 
-        public bool AddSavedLocation(string city, string country, int userID)
+        public bool AddSavedLocation(string city, int userID)
         {
             int highestID = returnHighestID();
             if (highestID < userID || userID < 0)
@@ -204,13 +204,13 @@ namespace WeatherApp
             {
                 //connect to the db
                 connection.Open();
-                List<string> stateCode = connection.Query<string>("SELECT savedStateCode FROM `userSavedLocation` WHERE `savedStateCode` = @SavedStateCode AND `savedCountry` = @SavedCountry AND `userID` = @UserID", new { SavedStateCode = city, SavedCountry = country, UserID = userID }).ToList();
+                List<string> stateCode = connection.Query<string>("SELECT savedStateCode FROM `userSavedLocation` WHERE `savedStateCode` = @SavedStateCode AND `userID` = @UserID", new { SavedStateCode = city, UserID = userID }).ToList();
 
                 if (stateCode.Count > 0)
                 {
                     return false;
                 }
-                connection.Execute("INSERT INTO `userSavedLocation` (`savedStateCode`, `savedCountry`, `userID`) VALUES (@SavedStateCode, @SavedCountry, @UserID)", new { SavedStateCode = city, SavedCountry = country, UserID = userID });
+                connection.Execute("INSERT INTO `userSavedLocation` (`savedStateCode`, `userID`) VALUES (@SavedStateCode, @UserID)", new { SavedStateCode = city, UserID = userID });
                 return true;
             }
         }
@@ -222,7 +222,7 @@ namespace WeatherApp
         * Returns        : bool : returns true if everything went well and return false when something is invalid
         */
 
-        public bool AddHistoryLocation(string city, string country, int userID)
+        public bool AddHistoryLocation(string city, int userID)
         {
             int highestID = returnHighestID();
             if (highestID < userID || userID < 0)
@@ -234,7 +234,7 @@ namespace WeatherApp
             {
                 string formatedTime = currentDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
-                connection.Execute($"INSERT INTO `userHistory` (`historyStateCode`, `historyCountry`, `searchTime`, `userID`) VALUES ('{city}', '{country}', '{formatedTime}', {userID});");
+                connection.Execute($"INSERT INTO `userHistory` (`historyStateCode`, `historyCountry`, `searchTime`, `userID`) VALUES ('{city}', 'ON', '{formatedTime}', {userID});");
                 return true;
             }
         }
@@ -251,9 +251,10 @@ namespace WeatherApp
             {
                 //connect to the db
                 connection.Open();
-                List<string> history = connection.Query<string>($"SELECT historyStateCode FROM userHistory WHERE userID = {userID}").ToList();
+                List<string> history = connection.Query<string>($"SELECT historyStateCode FROM userHistory WHERE userID = {userID} ORDER BY searchTime DESC").ToList();
 
-                
+
+
 
                 return history;
             }
