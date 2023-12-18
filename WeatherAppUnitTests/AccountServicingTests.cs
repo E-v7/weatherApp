@@ -71,7 +71,7 @@ namespace WeatherAppUnitTests
         public void verifyCreatingUserAllCorrectInfo()
         {
             var accountServicing = new AccountServicing(connectionString);
-            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas1234567$", "taudet@example.com");
+            bool AccountCreationValid = accountServicing.CreateAccount("taudet0000", "Thomas12345$", "taudet@example.com");
             Assert.IsTrue(AccountCreationValid, "The account was created");
         }*/
 

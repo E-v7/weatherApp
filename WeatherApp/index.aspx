@@ -9,6 +9,12 @@
 <asp:Content id="city" ContentPlaceHolderID="PageButton" runat="server">
 <asp:Button id="Search" runat="server" Text="Search" OnClick="Search_Click" />
 </asp:Content>
+<asp:Content ID="ddLists" ContentPlaceHolderID="ddLists" runat="server">
+     <div>
+     <asp:DropDownList ID="ddlHistoryLocations" runat="server" Font-Size="Large"><asp:ListItem Text="--Search History--" value="-1" /></asp:DropDownList>
+     <asp:Button ID="historyButton" runat="server" OnClick="historyButton_Click" Text="Go" Font-Size="Large"/>
+ </div>
+</asp:Content>
 <asp:Content id="mainContent" ContentPlaceHolderID="MainContent" runat="server">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>

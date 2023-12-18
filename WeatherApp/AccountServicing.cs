@@ -234,7 +234,7 @@ namespace WeatherApp
             {
                 string formatedTime = currentDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
-                connection.Execute($"INSERT INTO `userHistory` (`historyStateCode`, `searchTime`, `userID`) VALUES ('{city}', '{formatedTime}', {userID});");
+                connection.Execute($"INSERT INTO `userHistory` (`historyStateCode`, `historyCountry`, `searchTime`, `userID`) VALUES ('{city}', 'ON', '{formatedTime}', {userID});");
                 return true;
             }
         }
@@ -251,9 +251,10 @@ namespace WeatherApp
             {
                 //connect to the db
                 connection.Open();
-                List<string> history = connection.Query<string>($"SELECT historyStateCode FROM userHistory WHERE userID = {userID}").ToList();
+                List<string> history = connection.Query<string>($"SELECT historyStateCode FROM userHistory WHERE userID = {userID} ORDER BY searchTime DESC").ToList();
 
-                
+
+
 
                 return history;
             }
